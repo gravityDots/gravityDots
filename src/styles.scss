@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@font-face {
+    font-family: 'Artemus';
+    src: url(../src/assets/Artemus.otf) format('Artemus');
+  }
+
+@font-face {
+    font-family: 'Chavelite';
+    src: url(../src/assets/Chavelite.otf) format('truetype');
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*ul,*a,*li{
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Artemus',"Poppins", sans-serif;
+    background: linear-gradient(to bottom, #81a5e065 0%, #cc5ae032 100%);
+}
