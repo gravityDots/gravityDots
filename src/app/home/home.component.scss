@@ -137,6 +137,54 @@ svg{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    position: relative;
+    .ball {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.7;
+        will-change: transform;
+    }
+
+    @keyframes move-forever1 {
+        0% {
+            transform: translate(85px, 0%);
+        }
+
+        100% {
+            transform: translate(-90px, 0%);
+        }
+    }
+
+    @keyframes move-forever2 {
+        0% {
+            transform: translate(-90px, 0%);
+        }
+
+        100% {
+            transform: translate(85px, 0%);
+        }
+    }
+
+    @keyframes move-forever3 {
+        0% {
+            transform: translate(85px, 0%);
+        }
+
+        100% {
+            transform: translate(-90px, 0%);
+        }
+    }
+
+    @keyframes move-forever4 {
+        0% {
+            transform: translate(-90px, 0%);
+        }
+
+        100% {
+            transform: translate(85px, 0%);
+        }
+    }
     .show{
         display: block;
     }
@@ -443,54 +491,6 @@ svg{
         position: relative;
         // overflow: hidden;
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-
-        .ball {
-            position: absolute;
-            overflow: hidden;
-            border-radius: 50%;
-            opacity: 0.7;
-            will-change: transform;
-        }
-
-        @keyframes move-forever1 {
-            0% {
-                transform: translate(85px, 0%);
-            }
-
-            100% {
-                transform: translate(-90px, 0%);
-            }
-        }
-
-        @keyframes move-forever2 {
-            0% {
-                transform: translate(-90px, 0%);
-            }
-
-            100% {
-                transform: translate(85px, 0%);
-            }
-        }
-
-        @keyframes move-forever3 {
-            0% {
-                transform: translate(85px, 0%);
-            }
-
-            100% {
-                transform: translate(-90px, 0%);
-            }
-        }
-
-        @keyframes move-forever4 {
-            0% {
-                transform: translate(-90px, 0%);
-            }
-
-            100% {
-                transform: translate(85px, 0%);
-            }
-        }
 
         .editorial {
             display: block;
