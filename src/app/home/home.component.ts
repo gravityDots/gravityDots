@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit{
   public servicesList = [
     {
       name: "Creative Logo",
-      logoPath: "assets/icons/Creative Logo.png.png"
+      logoPath: "assets/icons/Creative Logo.png"
     },
     {
       name: "Customised Branding",

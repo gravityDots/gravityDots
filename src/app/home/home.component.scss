@@ -133,10 +133,11 @@ svg{
 
 .main {
     width: 100%;
-    height: auto;
+    // height: auto;
     display: flex;
     flex-direction: column;
-
+    align-items: center;
+    justify-content: center;
     .show{
         display: block;
     }
@@ -295,33 +296,34 @@ svg{
             }
         }
 
-
-      
-@media (max-width: 768px){
-    .header{
+        @media (max-width: 768px) {
+    .header {
         width: 90%;
-    
-        .logo{
+
+        .logo {
             width: 150px;
             padding-left: 20px;
         }
-        .nav-bar{
+
+        .nav-bar {
             padding-right: 20px;
             position: relative;
 
-            .toggle-menu{
+            .toggle-menu {
                 display: block;
                 z-index: 100;
                 cursor: pointer;
 
-                i{
+                i {
                     font-size: 35px;
                 }
             }
-            .menu{
+
+            .menu {
                 display: none;
             }
-            .showMenu{
+
+            .showMenu {
                 display: flex;
                 align-items: flex-start;
                 justify-content: flex-start;
@@ -336,40 +338,41 @@ svg{
                 background: rgba(0, 0, 0, 0.914);
                 transition: all 0.2s ease-in-out;
 
-                li{
+                li {
                     width: 100%;
                     margin: 20px 5px;
-                    &:first-child{
+
+                    &:first-child {
                         margin-top: 150px;
                     }
 
-                    a{
+                    a {
                         display: inline-block;
-                            text-decoration: none;
-                            color: #fff;
-                            text-align: center;
-                            transition: 0.15s ease-in-out;
-                            position: relative;
-                            text-transform: uppercase;
-                            font-weight: 500;
-                            font-size: 22px;
-                            transition: .3s;
+                        text-decoration: none;
+                        color: #fff;
+                        text-align: center;
+                        transition: 0.15s ease-in-out;
+                        position: relative;
+                        text-transform: uppercase;
+                        font-weight: 500;
+                        font-size: 22px;
+                        transition: .3s;
 
-                            &:hover {
-                                transform: scale(1.1);
-                                transition: .2s;
-                            }
+                        &:hover {
+                            transform: scale(1.1);
+                            transition: .2s;
+                        }
                     }
                 }
             }
 
-            .close-menu{
+            .close-menu {
                 position: absolute;
                 top: 100px;
                 right: 40px;
                 transform: translateY(-50%);
 
-                i{
+                i {
                     font-size: 40px;
                     padding-bottom: 100px;
                 }
@@ -380,34 +383,37 @@ svg{
             overflow: hidden;
         }
     }
-    
-    .home-page-content{
-        .head-line-title{
-            h1{
+
+    .home-page-content {
+        .head-line-title {
+            h1 {
                 font-size: 8vw;
                 padding: 0 15px;
 
-                span{
+                span {
                     margin-top: 10px;
                 }
             }
         }
-        .tagline{
-            p{
+
+        .tagline {
+            p {
                 font-size: 3.5vw;
             }
         }
     }
 
-}
+        }
     }
 
     .container {
         width: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
         position: relative;
-        height: auto;
+        // height: auto;
         overflow: hidden;
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 
@@ -526,7 +532,8 @@ svg{
         .sections {
             position: relative;
             width: 100%;
-            height: 100vh;
+            // margin: 20px;
+            height: auto;
 
             .section-header {
                 width: max-content;
@@ -541,7 +548,6 @@ svg{
         #services {
             display: flex;
             flex-direction: column;
-            height: max-content;
             align-items: center;
 
             .section-header {
@@ -562,13 +568,6 @@ svg{
                 .main-services {
                     display: flex;
                     flex-wrap: wrap;
-
-                    @media (min-width: 40em) {
-                        .services-grid {
-                            display: grid;
-                            grid-template-columns: 1fr 3fr;
-                        }
-                    }
 
                     .services-grid {
                         display: grid;
@@ -705,10 +704,8 @@ svg{
                         justify-content: space-between;
                         margin: 10px 0;
                         user-select: none;
-                        // transform: translateX(300px);
 
                         &:nth-child(2) {
-                            // transform: translateX(-300px);
                             animation: scroll-reverse 20s linear infinite;
                         }
                     }
@@ -743,7 +740,6 @@ svg{
             align-items: center;
             justify-content: space-between;
             flex-direction: column;
-            height: max-content;
             margin-top: 50px;
 
             .section-header {
@@ -779,7 +775,6 @@ svg{
                     align-items: center;
                     justify-content: center;
                     margin: 100px;
-                    // border: 1px solid white;
 
                     .team-heading {
                         color: #fff;
@@ -834,25 +829,11 @@ svg{
                                     padding-top: 5px;
                                 }
             
-                                // &::before{
-                                //     content: "";
-                                //     position: absolute;
-                                //     width: 15px;
-                                //     height: 15px;
-                                //     background-color: #775ae0;
-                                //     top: 0;
-                                //     left: 50%;
-                                //     transform: translate(-50%, -50%) rotate(45deg);
-                                // }
                             }
                             &:hover{
                                 transform: translateY(25px);
                             }
                         }
-            
-                        // .profile:not(:first-child) img {
-                        //     margin-left: -20px;
-                        // }
             
                         .profile img:hover+.name {
                             opacity: 1;
@@ -899,7 +880,7 @@ svg{
             align-items: center;
             flex-direction: column;
             margin-top: 150px;
-            height: max-content;
+            // height: max-content;
             padding: 10px;
 
             .section-header {
@@ -1053,7 +1034,7 @@ svg{
                         }
                     }
                     .other-services{
-                        padding: 50px 10px 50px 10px;
+                        padding: 50px 10px 20px 10px;
 
                         .other-services-title{
                             font-size: 4.2vw;
@@ -1123,6 +1104,7 @@ svg{
 
             #contact-us{
                 .section-header{
+                    margin-top: 20px;
                     margin-bottom: 15px;
                 }
 
@@ -1173,6 +1155,10 @@ svg{
                 .section-header{
                     margin-top: 20px;
                 }
+            }
+
+            .footer{
+                height: 100px;
             }
         }
     }       
