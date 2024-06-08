@@ -19,16 +19,7 @@ export class HomeComponent implements OnInit{
   public socialIcons = [
     { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram', color: '#ffffff' },
     { href: 'https://www.facebook.com/GravityDots', iconClass: 'fa-brands fa-facebook', color: '#ffffff' },
-    { href: '#', iconClass: 'fa-brands fa-linkedin', color: '#ffffff' }
-  ];
-
-  public mainServices = [
-    { imgSrc: 'assets/Main Services.gif', description: 'Branding' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fbanijhrol4-annie-spratt-776x951.jpg', description: 'Printing Editorials & Packaging design' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/2rm8p0rkxiw-marius-masalar-776x582.jpg', description: 'Digital/ Social Media management' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/71nlan-2ya-andrew-neel-2-776x620.jpg', description: 'Paid Advertising' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/hdyo6rr3kqk-scott-webb-1172x780.jpg', description: 'Creative Website Development <br>& <br>SEO' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fvazbu6zae-andrew-neel-776x517.jpg', description: 'Content creation' }
+    { href: 'https://www.linkedin.com/company/gravitydots/', iconClass: 'fa-brands fa-linkedin', color: '#ffffff' }
   ];
 
   public navList = [
@@ -37,6 +28,16 @@ export class HomeComponent implements OnInit{
     {name:'about us',path:'#about-us'},
     {name:'contact us',path:'#contact-us'}
   ];
+
+  // public mainServices = [
+  //   { imgSrc: 'assets/Main Services.gif', description: 'Branding' },
+  //   { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fbanijhrol4-annie-spratt-776x951.jpg', description: 'Printing Editorials & Packaging design' },
+  //   { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/2rm8p0rkxiw-marius-masalar-776x582.jpg', description: 'Digital/ Social Media management' },
+  //   { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/71nlan-2ya-andrew-neel-2-776x620.jpg', description: 'Paid Advertising' },
+  //   { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/hdyo6rr3kqk-scott-webb-1172x780.jpg', description: 'Creative Website Development <br>& <br>SEO' },
+  //   { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fvazbu6zae-andrew-neel-776x517.jpg', description: 'Content creation' }
+  // ];
+
 
   public servicesList = [
     {
@@ -107,6 +108,86 @@ export class HomeComponent implements OnInit{
       logoPath: "assets/icons/UI_UX design.png"
     }
   ];
+
+  public mainServices = [
+    { imgSrc: 'https://i.postimg.cc/Xvm3Q0Cx/Main-Services.gif', description: 'Branding' },
+    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fbanijhrol4-annie-spratt-776x951.jpg', description: 'Printing Editorials & Packaging design' },
+    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/2rm8p0rkxiw-marius-masalar-776x582.jpg', description: 'Digital/ Social Media management' },
+    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/71nlan-2ya-andrew-neel-2-776x620.jpg', description: 'Paid Advertising' },
+    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/hdyo6rr3kqk-scott-webb-1172x780.jpg', description: 'Creative Website Development <br>& <br>SEO' },
+    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fvazbu6zae-andrew-neel-776x517.jpg', description: 'Content creation' }
+  ];
+
+
+  // public servicesList = [
+  //   {
+  //     name: "Creative Logo",
+  //     logoPath: "https://i.postimg.cc/63ckFJ7D/Creative-Logo.png"
+  //   },
+  //   {
+  //     name: "Customised Branding",
+  //     logoPath: "https://i.postimg.cc/fLM4HTbc/Customised-branding.png"
+  //   },
+  //   {
+  //     name: "Flyer/Brochure/Menu Card",
+  //     logoPath: "https://i.postimg.cc/Zq8tFyJY/Flyer-Brochure-Menu-card.png"
+  //   },
+  //   {
+  //     name: "Graphical Design",
+  //     logoPath: "https://i.postimg.cc/25RNZxRX/Graphical-Design.png"
+  //   },
+  //   {
+  //     name: "Digital Marketing",
+  //     logoPath: "https://i.postimg.cc/XYy0qzhC/Digital-Marketing.png"
+  //   },
+  //   {
+  //     name: "Social Media Management",
+  //     logoPath: "https://i.postimg.cc/J4FL1LT8/Social-media-management.png"
+  //   },
+  //   {
+  //     name: "Creative Logo",
+  //     logoPath: "https://i.postimg.cc/63ckFJ7D/Creative-Logo.png"
+  //   },
+  //   {
+  //     name: "Paid Ads",
+  //     logoPath: "https://i.postimg.cc/1RJSj6wf/Paid-ads.png"
+  //   }
+  // ];
+
+  // public servicesList2 = [
+  //   {
+  //     name: "SEO",
+  //     logoPath: "https://i.postimg.cc/Gt71Twdk/SEO.png"
+  //   },
+  //   {
+  //     name: "Content Creation",
+  //     logoPath: "https://i.postimg.cc/k4yC9RHY/Content-creation.png"
+  //   },
+  //   {
+  //     name: "Keyword Research",
+  //     logoPath: "https://i.postimg.cc/hjnnH127/Keyword-research.png"
+  //   },
+  //   {
+  //     name: "Influencer Marketing",
+  //     logoPath: "https://i.postimg.cc/d3tY0tPs/Influencer-Marketing.png"
+  //   },
+  //   {
+  //     name: "Traditional Marketing",
+  //     logoPath: "https://i.postimg.cc/65b9yRpD/Traditional-Marketing.png"
+  //   },
+  //   {
+  //     name: "Website Development",
+  //     logoPath: "https://i.postimg.cc/XYZnFJZX/Website-Development.png"
+  //   },
+  //   {
+  //     name: "Website Maintenance and Support",
+  //     logoPath: "https://i.postimg.cc/Bnd4C0Dp/Website-Maintenance-and-Support.png"
+  //   },
+  //   {
+  //     name: "UI/UX Design",
+  //     logoPath: "https://i.postimg.cc/nchFFTp4/UI-UX-design.png"
+  //   }
+  // ];
   
   public isHidden = false;
   private lastScrollTop = 0;
