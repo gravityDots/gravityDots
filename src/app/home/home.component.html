@@ -49,8 +49,8 @@
                   </div>
 
                 <div class="other-services">
-                    <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="10">Engaging Digital Experiences</h2>
-                    <div class="slider-bg" data-aos="fade-up" data-aos-duration="800" data-aos-delay="10">
+                    <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="500" data-aos-delay="100">Engaging Digital Experiences</h2>
+                    <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
                         <div class="slider">
                             <div class="branding" *ngFor="let item of servicesList">
                                 <img [src]="item.logoPath" [alt]="">
@@ -98,10 +98,19 @@
             </div>
         </div>
 
+        <div class="sections" id="clients">
+            <h1 class="section-header" data-aos="zoom-in" data-aos-duration="500">Whom We<span>Served</span></h1>
+            <div class="clients-container" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="10">
+                <div class="box" *ngFor="let box of boxes" [ngStyle]="{'top.px': box.top, 'left.px': box.left}">
+                    <img [src]="box.imagePath" alt="Image">
+                </div>
+            </div>
+        </div>
+
         <div class="sections" id="contact-us" data-aos="fade-up">
-            <h1 class="section-header" data-aos="fade-up" data-aos-duration="500">let's Get in Touch</h1>
+            <h1 class="section-header" data-aos="fade-up" data-aos-duration="200">let's Get in Touch</h1>
             <div class="contact-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
                     <div class="icon">
                         <i class="fa-solid fa-phone" style="color: #ffffff;"></i>
                     </div>
@@ -110,7 +119,7 @@
                         <h2>+91 84013 89892</h2>
                     </div>
                 </div>
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
                     <div class="icon">
                         <i class="fa-solid fa-envelope" style="color: #ffffff;"></i>
                     </div>
@@ -119,7 +128,7 @@
                         <h2><a href="mailto:Gravitydots98@gmail.com">Gravitydots98@gmail.com</a></h2>
                     </div>
                 </div>
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
                     <div class="icon">
                         <i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
                     </div>

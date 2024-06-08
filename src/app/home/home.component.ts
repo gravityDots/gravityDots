@@ -1,10 +1,20 @@
 import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import {init} from 'aos';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('moveBox', [
+      state('move', style({ transform: 'translateX(0) translateY(0)' })),
+      transition('* => move', [
+        animate('2s', style({ transform: 'translateX({{x}}px) translateY({{y}}px)' }))
+      ], { params: { x: 0, y: 0 } })
+    ])
+  ]
+
 })
 export class HomeComponent implements OnInit{
   @ViewChild('container', { static: true }) container!: ElementRef;
@@ -118,15 +128,40 @@ export class HomeComponent implements OnInit{
   ];
 
   public mainServices = [
-    { imgSrc: 'https://i.postimg.cc/Xvm3Q0Cx/Main-Services.gif', description: 'Branding' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fbanijhrol4-annie-spratt-776x951.jpg', description: 'Printing Editorials & Packaging design' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/2rm8p0rkxiw-marius-masalar-776x582.jpg', description: 'Digital/ Social Media management' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/71nlan-2ya-andrew-neel-2-776x620.jpg', description: 'Paid Advertising' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/hdyo6rr3kqk-scott-webb-1172x780.jpg', description: 'Creative Website Development <br>& <br>SEO' },
-    { imgSrc: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/fvazbu6zae-andrew-neel-776x517.jpg', description: 'Content creation' }
+    { imgSrc: 'assets/services/Branding.jpg', description: 'Branding' },
+    { imgSrc: 'assets/services/Printing Editorials & Packaging design.jpg', description: 'Printing Editorials & Packaging design' },
+    { imgSrc: 'assets/services/Digital_ Social Media management.jpg', description: 'Digital/ Social Media management' },
+    { imgSrc: 'assets/services/Paid Advertising.jpg', description: 'Paid Advertising' },
+    { imgSrc: 'assets/services/Creative Website Developmen.jpg', description: 'Creative Website Development' },
+    { imgSrc: 'assets/services/Seo.jpg', description: 'Content creation <br>& <br>SEO' }
   ];
 
-
+  public boxes: Array<{ top: number, left: number, zIndex: number,imagePath: string }> = [];
+  public clientImages: string[] = [
+    'assets/clients/1.png',
+    'assets/clients/2.png',
+    'assets/clients/3.png',
+    'assets/clients/4.png',
+    'assets/clients/5.png',
+    'assets/clients/6.png',
+    'assets/clients/7.png',
+    'assets/clients/8.png',
+    'assets/clients/9.png',
+    'assets/clients/10.png',
+    'assets/clients/12.png',
+    'assets/clients/13.png',
+    'assets/clients/14.png',
+    'assets/clients/15.png',
+    'assets/clients/16.png',
+    'assets/clients/17.png',
+    'assets/clients/18.png',
+    'assets/clients/19.png',
+    'assets/clients/20.png',
+    'assets/clients/21.png',
+    'assets/clients/22.png',
+    'assets/clients/23.png',
+    'assets/clients/24.png',
+  ];
   // public servicesList = [
   //   {
   //     name: "Creative Logo",
@@ -205,6 +240,8 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.createBalls();
+    this.generateRandomBoxes();
+    this.animateBoxes();
     init({
     })
   }
@@ -282,5 +319,66 @@ export class HomeComponent implements OnInit{
     } else {
       this.renderer.removeClass(document.body, 'no-scroll');
     }
+  }
+
+  generateRandomBoxes(): void {
+    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 500;
+    let boxSize = window.innerWidth <= 768 ? 80 : 100;
+
+    const overlap = 3;
+    const numberOfBoxes = 30;
+
+    for (let i = 0; i < numberOfBoxes; i++) {
+      let positionValid = false;
+      let top = 0;
+      let left = 0;
+
+      while (!positionValid) {
+        top = Math.random() * (containerSize - boxSize);
+        left = Math.random() * (containerSize - boxSize);
+
+        positionValid = this.checkPosition(top, left, boxSize, overlap);
+      }
+
+      const zIndex = Math.floor(Math.random() * 10) + 1; 
+      const imagePath = this.getRandomImagePath();
+
+      this.boxes.push({ top, left, zIndex,imagePath });
+    }
+  }
+
+  checkPosition(top: number, left: number, boxSize: number, overlap: number): boolean {
+    if (this.boxes.length === 0) {
+      return true;
+    }
+
+    for (let box of this.boxes) {
+      const topDiff = Math.abs(box.top - top);
+      const leftDiff = Math.abs(box.left - left);
+
+      if ((topDiff < boxSize - overlap && topDiff > boxSize + overlap) ||
+          (leftDiff < boxSize - overlap && leftDiff > boxSize + overlap)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  animateBoxes(): void {
+    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 500;
+    let boxSize = window.innerWidth <= 768 ? 80 : 100;
+
+    setInterval(() => {
+      this.boxes.forEach(box => {
+        box.top = Math.random() * (containerSize - boxSize);
+        box.left = Math.random() * (containerSize - boxSize);
+        box.zIndex = Math.floor(Math.random() * 10) + 1;
+      });
+    }, 2000);
+  }
+
+  getRandomImagePath(): string {
+    const index = Math.floor(Math.random() * this.clientImages.length);
+    return this.clientImages[index];
   }
 }
