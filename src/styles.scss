@@ -27,6 +27,7 @@ html {
 body {
     width: 100vw;
     height: 100%;
+    overflow-x: hidden;
     font-family: 'Artemus',"Poppins", sans-serif;
     background: linear-gradient(to bottom, #81a5e065 0%, #cc5ae032 100%);
 }

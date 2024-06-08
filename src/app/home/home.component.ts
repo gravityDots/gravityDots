@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit{
   // ];
 
 
-  public servicesList = [
+  public servicesList = [ 
     {
       name: "Creative Logo",
       logoPath: "assets/icons/Creative Logo.png"
@@ -75,6 +75,14 @@ export class HomeComponent implements OnInit{
   ];
 
   public servicesList2 = [
+    {
+      name: "Creative Logo",
+      logoPath: "assets/icons/Creative Logo.png"
+    },
+    {
+      name: "Paid Ads",
+      logoPath: "assets/icons/Paid ads.png"
+    },
     {
       name: "SEO",
       logoPath: "assets/icons/Content creation.png"
