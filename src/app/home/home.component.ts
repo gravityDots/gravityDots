@@ -204,7 +204,7 @@ export class HomeComponent implements OnInit{
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    // this.createBalls();
+    this.createBalls();
     init({
     })
   }
@@ -228,49 +228,49 @@ export class HomeComponent implements OnInit{
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }
 
-  // createBalls() {
-  //   const colors = ["#FFF", "#ffffff00"];
-  //   const numBalls = 50;
-  //   const balls: HTMLElement[] = [];
+  createBalls() {
+    const colors = ["#FFF", "#ffffff00"];
+    const numBalls = 50;
+    const balls: HTMLElement[] = [];
 
-  //   for (let i = 0; i < numBalls; i++) {
-  //     let ball = this.renderer.createElement('div');
-  //     let containerHeight = this.container.nativeElement.offsetHeight
-  //     this.renderer.addClass(ball, 'ball');
-  //     this.renderer.setStyle(ball, 'background', colors[Math.floor(Math.random() * colors.length)]);
-  //     this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 95)}vw`);
-  //     this.renderer.setStyle(ball, 'border', '1px solid white');
-  //     this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 400)}vh`);
-  //     this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
-  //     const size = `${Math.random()}em`;
-  //     this.renderer.setStyle(ball, 'width', size);
-  //     this.renderer.setStyle(ball, 'height', size);
+    for (let i = 0; i < numBalls; i++) {
+      let ball = this.renderer.createElement('div');
+      let containerHeight = this.container.nativeElement.offsetHeight
+      this.renderer.addClass(ball, 'ball');
+      this.renderer.setStyle(ball, 'background', colors[Math.floor(Math.random() * colors.length)]);
+      this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 95)}vw`);
+      this.renderer.setStyle(ball, 'border', '1px solid white');
+      this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 400)}vh`);
+      this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
+      const size = `${Math.random()}em`;
+      this.renderer.setStyle(ball, 'width', size);
+      this.renderer.setStyle(ball, 'height', size);
 
-  //     balls.push(ball);
-  //     this.renderer.appendChild(this.container.nativeElement, ball);
-  //   }
+      balls.push(ball);
+      this.renderer.appendChild(this.container.nativeElement, ball);
+    }
 
-  //   balls.forEach((el, i) => {
-  //     let to = {
-  //       x: Math.random() * (i % 2 === 0 ? -11 : 11),
-  //       y: Math.random() * 12
-  //     };
+    balls.forEach((el, i) => {
+      let to = {
+        x: Math.random() * (i % 2 === 0 ? -11 : 11),
+        y: Math.random() * 12
+      };
 
-  //     el.animate(
-  //       [
-  //         { transform: 'translate(0, 0)' },
-  //         { transform: `translate(${to.x}rem, ${to.y}rem)` }
-  //       ],
-  //       {
-  //         duration: (Math.random() + 1) * 2000, 
-  //         direction: 'alternate',
-  //         fill: 'both',
-  //         iterations: Infinity,
-  //         easing: 'ease-in-out'
-  //       }
-  //     );
-  //   });
-  // }
+      el.animate(
+        [
+          { transform: 'translate(0, 0)' },
+          { transform: `translate(${to.x}rem, ${to.y}rem)` }
+        ],
+        {
+          duration: (Math.random() + 1) * 2000, 
+          direction: 'alternate',
+          fill: 'both',
+          iterations: Infinity,
+          easing: 'ease-in-out'
+        }
+      );
+    });
+  }
 
   toggleMenu(){
     if(window.innerWidth <= 768) {
