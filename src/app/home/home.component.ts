@@ -234,7 +234,7 @@ export class HomeComponent implements OnInit{
   }
 
   generateRandomBoxes(): void {
-    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 500;
+    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 600;
     let boxSize = window.innerWidth <= 768 ? 80 : 100;
 
     const overlap = 3;
@@ -277,7 +277,7 @@ export class HomeComponent implements OnInit{
   }
 
   animateBoxes(): void {
-    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 500;
+    let containerSize = window.innerWidth <= 768 ? window.innerWidth : 600;
     let boxSize = window.innerWidth <= 768 ? 80 : 100;
 
     setInterval(() => {
