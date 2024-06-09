@@ -1,2 +1,12 @@
-<app-home></app-home>
+<div *ngIf="isLoading" class="loader-container">
+    <img src="../../assets/GRAVITYDOTS LOGO.png" class="loader-image" alt="Loading...">
+</div>
+
+<div *ngIf="!isLoading">
+    <app-home></app-home>
+</div>
+
+
+
+
 

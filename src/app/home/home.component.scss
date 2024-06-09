@@ -211,7 +211,7 @@ svg{
             justify-content: space-between;
             transition: .3s;
             align-items: center;
-            background: linear-gradient(90deg, rgba(255, 255, 255,0.4), rgba(255, 255, 255,0.4));
+            background: linear-gradient(90deg, rgba(255, 255, 255,0.5), rgba(255, 255, 255,0.4));
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(8px)saturate(200%);
@@ -251,7 +251,7 @@ svg{
                         a {
                             display: inline-block;
                             text-decoration: none;
-                            color: #fff;
+                            color: #1A237E;
                             text-align: center;
                             transition: 0.15s ease-in-out;
                             position: relative;
