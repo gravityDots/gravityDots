@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   isLoading = true;
-
+  // public logoPath = '../../assets/GRAVITYDOTS LOGO.png'
   ngOnInit(): void {
     this.loadContent();
   }

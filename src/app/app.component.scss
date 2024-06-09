@@ -5,16 +5,20 @@
     height: 100vh;
   }
   
-  .loader-image {
-    width: 100px;
-    animation: zoomInOut 2s linear infinite;
-  }
-  
-  @keyframes zoomInOut {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
+.loader {
+    border: 2px solid #f3f3f3; 
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
