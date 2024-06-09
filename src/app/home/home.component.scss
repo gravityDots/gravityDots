@@ -143,6 +143,83 @@ svg{
     @include flexproperty(flex,column,center,center);
     overflow: hidden;
     position: relative;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+
+    .shape {
+        position: absolute;
+        border: 1px solid white;
+        background: #FFF;
+      }
+      
+      .square {
+        width: 1em;
+        height: 1em;
+      }
+      
+      .triangle {
+        width: 0;
+        height: 0;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-bottom: 1em solid white;
+      }
+      
+      .pentagon {
+        position: relative;
+        width: 1em;
+        height: 1em;
+        background: transparent;
+      }
+      
+      .pentagon:before {
+        content: "";
+        position: absolute;
+        top: -0.5em;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-bottom: 0.5em solid white;
+      }
+      
+      .pentagon:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 1em;
+        height: 1em;
+        background: white;
+      }
+      
+      .hexagon {
+        width: 1em;
+        height: 0.6em;
+        background: white;
+        position: relative;
+      }
+      
+      .hexagon:before,
+      .hexagon:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+      }
+      
+      .hexagon:before {
+        bottom: 100%;
+        border-bottom: 0.3em solid white;
+      }
+      
+      .hexagon:after {
+        top: 100%;
+        width: 0;
+        border-top: 0.3em solid white;
+      }
+      
     .ball {
         position: absolute;
         border-radius: 50%;
@@ -278,16 +355,16 @@ svg{
             opacity: 0;
         }
 
-        #backgroundVideo{
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100vh;
-            height: auto;
-            object-fit: contain;
-            z-index: -1;
-        }
+        // #backgroundVideo{
+        //     position: absolute;
+        //     right: 0;
+        //     bottom: 0;
+        //     min-width: 100%;
+        //     min-height: 100vh;
+        //     height: auto;
+        //     object-fit: contain;
+        //     z-index: -1;
+        // }
 
         .home-page-content{
             width: 100%;
@@ -478,7 +555,7 @@ svg{
         @include flexproperty(flex,column,center,center);
         position: relative;
         // overflow: hidden;
-        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        // background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 
         .editorial {
             display: block;

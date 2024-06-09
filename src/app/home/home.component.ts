@@ -17,6 +17,8 @@ import {init} from 'aos';
 
 })
 export class HomeComponent implements OnInit{
+  @ViewChild('main', { static: true }) main!: ElementRef;
+  @ViewChild('homePage', { static: true }) homePage!: ElementRef;
   @ViewChild('container', { static: true }) container!: ElementRef;
 
   public logoPath = 'assets/GRAVITYDOTS LOGO.png';
@@ -152,6 +154,7 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     this.createBalls();
+    // this.createShapes();
     this.generateRandomBoxes();
     this.animateBoxes();
     init({
@@ -177,26 +180,76 @@ export class HomeComponent implements OnInit{
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
   }
 
+  createShapes() {
+    const colors = ["#FFF", "#ffffff00"];
+    const numShapes = 70;
+    const shapes: HTMLElement[] = [];
+    const shapeClasses = ['square', 'triangle', 'pentagon', 'hexagon'];
+  
+    for (let i = 0; i < numShapes; i++) {
+      let shape = this.renderer.createElement('div');
+      const shapeClass = shapeClasses[Math.floor(Math.random() * shapeClasses.length)];
+      
+      this.renderer.addClass(shape, 'shape');
+      this.renderer.addClass(shape, shapeClass);
+      this.renderer.setStyle(shape, 'background', colors[Math.floor(Math.random() * colors.length)]);
+      this.renderer.setStyle(shape, 'border', '1px solid white');
+      this.renderer.setStyle(shape, 'left', `${Math.floor(Math.random() * 95)}vw`);
+      this.renderer.setStyle(shape, 'top', `${Math.floor(Math.random() * 10)}vh`);
+      this.renderer.setStyle(shape, 'transform', `scale(${Math.random()})`);
+  
+      const size = `${Math.random()}em`;
+      if (shapeClass !== 'triangle') {
+        this.renderer.setStyle(shape, 'width', size);
+        this.renderer.setStyle(shape, 'height', size);
+      }
+  
+      shapes.push(shape);
+      this.renderer.appendChild(this.container.nativeElement, shape);
+    }
+  
+    shapes.forEach((el, i) => {
+      let to = {
+        x: Math.random() * (i % 2 === 0 ? -11 : 11),
+        y: Math.random() * 12
+      };
+  
+      el.animate(
+        [
+          { transform: 'translate(0, 0)' },
+          { transform: `translate(${to.x}rem, ${to.y}rem)` }
+        ],
+        {
+          duration: (Math.random() + 1) * 2000, 
+          direction: 'alternate',
+          fill: 'both',
+          iterations: Infinity,
+          easing: 'ease-in-out'
+        }
+      );
+    });
+  }
+
+  
   createBalls() {
     const colors = ["#FFF", "#ffffff00"];
-    const numBalls = 50;
+    const numBalls = 80;
     const balls: HTMLElement[] = [];
 
     for (let i = 0; i < numBalls; i++) {
       let ball = this.renderer.createElement('div');
-      let containerHeight = this.container.nativeElement.offsetHeight
       this.renderer.addClass(ball, 'ball');
       this.renderer.setStyle(ball, 'background', colors[Math.floor(Math.random() * colors.length)]);
       this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 95)}vw`);
       this.renderer.setStyle(ball, 'border', '1px solid white');
-      this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 400)}vh`);
+      this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 550)}vh`);
       this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
       const size = `${Math.random()}em`;
       this.renderer.setStyle(ball, 'width', size);
       this.renderer.setStyle(ball, 'height', size);
 
       balls.push(ball);
-      this.renderer.appendChild(this.container.nativeElement, ball);
+      this.renderer.appendChild(this.main.nativeElement, ball);
     }
 
     balls.forEach((el, i) => {
@@ -239,7 +292,7 @@ export class HomeComponent implements OnInit{
     let boxSize = window.innerWidth <= 768 ? 80 : 100;
 
     const overlap = 3;
-    const numberOfBoxes = 30;
+    const numberOfBoxes = this.clientImages.length;
 
     for (let i = 0; i < numberOfBoxes; i++) {
       let positionValid = false;
@@ -291,8 +344,11 @@ export class HomeComponent implements OnInit{
     }, 2000);
   }
 
+  private currentIndex = 0;
   getRandomImagePath(): string {
-    const index = Math.floor(Math.random() * this.clientImages.length);
-    return this.clientImages[index];
+    const imagePath = this.clientImages[this.currentIndex];
+    this.currentIndex = (this.currentIndex + 1) % this.clientImages.length;
+    return imagePath;
   }
+  
 }
