@@ -4,19 +4,16 @@
     <div class="home-page" id="home-page">
         <div class="header" [class.hidden]="isHidden">
             <div class="logo">
-                <a href="#home-page"><img [src]="logoPath" [alt]="logoAltText"></a>
+                <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logoPath" [alt]="logoAltText"></a>
             </div>
-            <ul class='nav-bar'>
-                <div class="toggle-menu" (click)="toggleMenu()" >
-                    <i class="fa-solid fa-bars" style="color: #0c0c66;"></i>
+            <div class="nav-bar">
+                <div class="toggle-menu" [ngClass]="currentClass" [ngClass]="{'showMenu': showMenu}" (click)="toggleMenu()">
+                    <span></span><span></span><span></span>
                 </div>
-                <span class="menu" [ngClass]="{'showMenu': showMenu}">
-                    <li *ngFor="let item of navList" (click)="toggleMenu()"><a [href]="item.path">{{item.name}}</a></li>
-                    <div class="close-menu" (click)="toggleMenu()" *ngIf="showMenu">
-                        <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
-                    </div>
-                </span>
-            </ul>
+                <ul class="nav-list" [ngClass]="{'show-nav-list':showNavList}">
+                    <li class="list-items" *ngFor="let item of navList" (click)="toggleMenu(item.path,item.id)"><a [routerLink]='item.path'>{{item.name}}</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="home-page-content" #homePage>
@@ -52,89 +49,22 @@
                     <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="500" data-aos-delay="100">Engaging Digital Experiences</h2>
                     <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
 
-
                         <div class="slider">
-                            <div class="branding">
-                                <img src="../../assets/icons/Creative Logo.png" alt="">
-                                <h2>creative logo</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Customised branding.png" alt="">
-                                <h2>Customised Branding</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Flyer_Brochure_Menu card.png" alt="">
-                                <h2>Flyer/Brochure/Menu Card</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Graphical Design.png" alt="">
-                                <h2>Graphical Design</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Digital Marketing.png" alt="">
-                                <h2>Digital Marketing</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Social media management.png" alt="">
-                                <h2>Social Media Management</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Creative Logo.png" alt="">
-                                <h2>creative logo</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Paid ads.png" alt="">
-                                <h2>Paid Ads</h2>
+                            <div class="branding" *ngFor="let item of servicesList">
+                                <img [src]="item.logoPath" alt="">
+                                <h2>{{item.name}}</h2>
                             </div>
                         </div>
 
-
                         <div class="slider">
-                            <div class="branding">
-                                <img src="../../assets/icons/Creative Logo.png" alt="">
-                                <h2>creative logo</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Paid ads.png" alt="">
-                                <h2>Paid Ads</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Content creation.png" alt="">
-                                <h2>SEO</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Content creation.png" alt="">
-                                <h2>creative logo</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Keyword research.png" alt="">
-                                <h2>Keyword Research</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Influencer Marketing.png" alt="">
-                                <h2>Influencer Marketing</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Website Development.png" alt="">
-                                <h2>Website Development</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Website Maintenance and Support.png" alt="">
-                                <h2>Website Maintenance and Support</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/UI_UX design.png" alt="">
-                                <h2>UI/UX Design</h2>
-                            </div>
-                            <div class="branding">
-                                <img src="../../assets/icons/Traditional Marketing.png" alt="">
-                                <h2>Traditional Marketing</h2>
+                            <div class="branding" *ngFor="let item of servicesList2">
+                                <img [src]="item.logoPath" alt="">
+                                <h2>{{item.name}}</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="sections" id="about-us">
@@ -178,14 +108,25 @@
 
         <div class="sections" id="clients">
             <h1 class="section-header" data-aos="zoom-in" data-aos-duration="500">Whom We<span>Served</span></h1>
-            <div class="clients-container" data-aos="zoom-in" data-aos-duration="500" data-aos-delay="10">
-                <div class="box" *ngFor="let box of boxes" [ngStyle]="{'top.px': box.top, 'left.px': box.left}">
-                    <img [src]="box.imagePath" alt="Image">
-                </div>
+            <div class="clients-container" data-aos="fade-up" data-aos-duration="300" data-aos-delay="10">
+                <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
+
+                    <div class="slider">
+                        <div class="branding" *ngFor="let item of clientImages">
+                            <img data-aos="zoom-in" [src]="item" alt="">
+                        </div>
+                    </div>
+
+                    <div class="slider">
+                        <div class="branding" *ngFor="let item of clientImages2">
+                            <img [src]="item" alt="">
+                        </div>
+                    </div>
+            </div>
             </div>
         </div>
 
-        <div class="sections" id="contact-us" data-aos="fade-up">
+        <div class="sections" id="contact-us" >
             <h1 class="section-header" data-aos="fade-up" data-aos-duration="200">let's Get in Touch</h1>
             <div class="contact-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
@@ -221,7 +162,7 @@
 
         <div class="footer">
             <div class="logo">
-                <a href="#home-page"><img [src]="logopathTwo" [alt]="logoAltText"></a>
+                <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logopathTwo" [alt]="logoAltText"></a>
             </div>
             <div class="social-icons">
                 <div class="icon" *ngFor="let icon of socialIcons">

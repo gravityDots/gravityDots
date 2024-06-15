@@ -1,6 +1,7 @@
 import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import {init} from 'aos';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -22,12 +23,16 @@ export class HomeComponent implements OnInit{
   @ViewChild('container', { static: true }) container!: ElementRef;
 
   public logoPath = 'assets/GRAVITYDOTS LOGO.png';
+  public defaultHomePath = '/'
+  public logopathTwo = 'assets/GRAVITYDOTS LOGO 2.png';
   public logoAltText = 'GravityDots';
   public showMenu = false;
-  private targetSectionPosition: number | undefined;
-
-  public logopathTwo = 'assets/GRAVITYDOTS LOGO 2.png';
-
+  public isHidden = false;
+  private lastScrollTop = 0;
+  private scrollThreshold = 100;
+  public currentClass: string = 'toggle-menu';
+  public showNavList:boolean = false;
+  
   public socialIcons = [
     { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram', color: '#ffffff' },
     { href: 'https://www.facebook.com/GravityDots', iconClass: 'fa-brands fa-facebook', color: '#ffffff' },
@@ -35,10 +40,10 @@ export class HomeComponent implements OnInit{
   ];
 
   public navList = [
-    {name:'home',path:'/#home-page'},
-    {name:'services',path:'#services'},
-    {name:'about us',path:'#about-us'},
-    {name:'contact us',path:'#contact-us'}
+    {name:'home',path:'/',id:'home-page'},
+    {name:'services',path:'/services',id:'services'},
+    {name:'about us',path:'/about-us',id:'about-us'},
+    {name:'contact us',path:'/contact-us',id:'contact-us'}
   ];
 
   public mainServices = [
@@ -50,7 +55,6 @@ export class HomeComponent implements OnInit{
     { imgSrc: 'assets/services/Seo.jpg', description: 'Content creation <br>& <br>SEO' }
   ];
 
-  public boxes: Array<{ top: number, left: number, zIndex: number,imagePath: string }> = [];
   public clientImages: string[] = [
     'assets/clients/1.png',
     'assets/clients/2.png',
@@ -62,7 +66,36 @@ export class HomeComponent implements OnInit{
     'assets/clients/8.png',
     'assets/clients/9.png',
     'assets/clients/10.png',
+    'assets/clients/11.png',
     'assets/clients/12.png',
+        // list repeat
+    'assets/clients/1.png',
+    'assets/clients/2.png',
+    'assets/clients/3.png',
+    'assets/clients/4.png',
+    'assets/clients/5.png',
+    'assets/clients/6.png',
+    'assets/clients/7.png',
+    'assets/clients/8.png',
+    'assets/clients/9.png',
+    'assets/clients/10.png',
+    'assets/clients/11.png',
+    'assets/clients/12.png',
+    // list repeat
+    'assets/clients/1.png',
+    'assets/clients/2.png',
+    'assets/clients/3.png',
+    'assets/clients/4.png',
+    'assets/clients/5.png',
+    'assets/clients/6.png',
+    'assets/clients/7.png',
+    'assets/clients/8.png',
+    'assets/clients/9.png',
+    'assets/clients/10.png',
+    'assets/clients/11.png',
+    'assets/clients/12.png'
+  ];
+  public clientImages2: string[] = [
     'assets/clients/13.png',
     'assets/clients/14.png',
     'assets/clients/15.png',
@@ -75,92 +108,278 @@ export class HomeComponent implements OnInit{
     'assets/clients/22.png',
     'assets/clients/23.png',
     'assets/clients/24.png',
+    //list repeat
+    'assets/clients/13.png',
+    'assets/clients/14.png',
+    'assets/clients/15.png',
+    'assets/clients/16.png',
+    'assets/clients/17.png',
+    'assets/clients/18.png',
+    'assets/clients/19.png',
+    'assets/clients/20.png',
+    'assets/clients/21.png',
+    'assets/clients/22.png',
+    'assets/clients/23.png',
+    'assets/clients/24.png',
+     //list repeat
+     'assets/clients/13.png',
+     'assets/clients/14.png',
+     'assets/clients/15.png',
+     'assets/clients/16.png',
+     'assets/clients/17.png',
+     'assets/clients/18.png',
+     'assets/clients/19.png',
+     'assets/clients/20.png',
+     'assets/clients/21.png',
+     'assets/clients/22.png',
+     'assets/clients/23.png',
+     'assets/clients/24.png',
   ];
-  // public servicesList = [
-  //   {
-  //     name: "Creative Logo",
-  //     logoPath: "https://i.postimg.cc/63ckFJ7D/Creative-Logo.png"
-  //   },
-  //   {
-  //     name: "Customised Branding",
-  //     logoPath: "https://i.postimg.cc/fLM4HTbc/Customised-branding.png"
-  //   },
-  //   {
-  //     name: "Flyer/Brochure/Menu Card",
-  //     logoPath: "https://i.postimg.cc/Zq8tFyJY/Flyer-Brochure-Menu-card.png"
-  //   },
-  //   {
-  //     name: "Graphical Design",
-  //     logoPath: "https://i.postimg.cc/25RNZxRX/Graphical-Design.png"
-  //   },
-  //   {
-  //     name: "Digital Marketing",
-  //     logoPath: "https://i.postimg.cc/XYy0qzhC/Digital-Marketing.png"
-  //   },
-  //   {
-  //     name: "Social Media Management",
-  //     logoPath: "https://i.postimg.cc/J4FL1LT8/Social-media-management.png"
-  //   },
-  //   {
-  //     name: "Creative Logo",
-  //     logoPath: "https://i.postimg.cc/63ckFJ7D/Creative-Logo.png"
-  //   },
-  //   {
-  //     name: "Paid Ads",
-  //     logoPath: "https://i.postimg.cc/1RJSj6wf/Paid-ads.png"
-  //   }
-  // ];
 
-  // public servicesList2 = [
-  //   {
-  //     name: "SEO",
-  //     logoPath: "https://i.postimg.cc/Gt71Twdk/SEO.png"
-  //   },
-  //   {
-  //     name: "Content Creation",
-  //     logoPath: "https://i.postimg.cc/k4yC9RHY/Content-creation.png"
-  //   },
-  //   {
-  //     name: "Keyword Research",
-  //     logoPath: "https://i.postimg.cc/hjnnH127/Keyword-research.png"
-  //   },
-  //   {
-  //     name: "Influencer Marketing",
-  //     logoPath: "https://i.postimg.cc/d3tY0tPs/Influencer-Marketing.png"
-  //   },
-  //   {
-  //     name: "Traditional Marketing",
-  //     logoPath: "https://i.postimg.cc/65b9yRpD/Traditional-Marketing.png"
-  //   },
-  //   {
-  //     name: "Website Development",
-  //     logoPath: "https://i.postimg.cc/XYZnFJZX/Website-Development.png"
-  //   },
-  //   {
-  //     name: "Website Maintenance and Support",
-  //     logoPath: "https://i.postimg.cc/Bnd4C0Dp/Website-Maintenance-and-Support.png"
-  //   },
-  //   {
-  //     name: "UI/UX Design",
-  //     logoPath: "https://i.postimg.cc/nchFFTp4/UI-UX-design.png"
-  //   }
-  // ];
-  
-  public isHidden = false;
-  private lastScrollTop = 0;
-  private scrollThreshold = 100;
+  public servicesList = [
+    {
+      name: "Creative Logo",
+      logoPath: "assets/icons/Creative Logo.png"
+    },
+    {
+      name: "Customised Branding",
+      logoPath: "assets/icons/Customised branding.png"
+    },
+    {
+      name: "Flyer/Brochure/Menu Card",
+      logoPath: "assets/icons/Flyer_Brochure_Menu card.png"
+    },
+    {
+      name: "Graphical Design",
+      logoPath: "assets/icons/Graphical Design.png"
+    },
+    {
+      name: "Digital Marketing",
+      logoPath: "assets/icons/Digital Marketing.png"
+    },
+    {
+      name: "Social Media Management",
+      logoPath: "assets/icons/Social media management.png"
+    },
+    {
+      name: "Paid Ads",
+      logoPath: "assets/icons/Paid ads.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    },
+    //repeat
+    {
+      name: "Creative Logo",
+      logoPath: "assets/icons/Creative Logo.png"
+    },
+    {
+      name: "Customised Branding",
+      logoPath: "assets/icons/Customised branding.png"
+    },
+    {
+      name: "Flyer/Brochure/Menu Card",
+      logoPath: "assets/icons/Flyer_Brochure_Menu card.png"
+    },
+    {
+      name: "Graphical Design",
+      logoPath: "assets/icons/Graphical Design.png"
+    },
+    {
+      name: "Digital Marketing",
+      logoPath: "assets/icons/Digital Marketing.png"
+    },
+    {
+      name: "Social Media Management",
+      logoPath: "assets/icons/Social media management.png"
+    },
+    {
+      name: "Paid Ads",
+      logoPath: "assets/icons/Paid ads.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    },
+    //repeat
+    {
+      name: "Creative Logo",
+      logoPath: "assets/icons/Creative Logo.png"
+    },
+    {
+      name: "Customised Branding",
+      logoPath: "assets/icons/Customised branding.png"
+    },
+    {
+      name: "Flyer/Brochure/Menu Card",
+      logoPath: "assets/icons/Flyer_Brochure_Menu card.png"
+    },
+    {
+      name: "Graphical Design",
+      logoPath: "assets/icons/Graphical Design.png"
+    },
+    {
+      name: "Digital Marketing",
+      logoPath: "assets/icons/Digital Marketing.png"
+    },
+    {
+      name: "Social Media Management",
+      logoPath: "assets/icons/Social media management.png"
+    },
+    {
+      name: "Paid Ads",
+      logoPath: "assets/icons/Paid ads.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    }
+  ];
 
-  constructor(private renderer: Renderer2) { }
+  public servicesList2 = [
+    {
+      name: "SEO",
+      logoPath: "assets/icons/SEO.png"
+    },
+    {
+      name: "Content Creation",
+      logoPath: "assets/icons/Content creation.png"
+    },
+    {
+      name: "Keyword Research",
+      logoPath: "assets/icons/Keyword research.png"
+    },
+    {
+      name: "Influencer Marketing",
+      logoPath: "assets/icons/Influencer Marketing.png"
+    },
+    {
+      name: "Traditional Marketing",
+      logoPath: "assets/icons/Traditional Marketing.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    },
+    {
+      name: "Website Development",
+      logoPath: "assets/icons/Website Development.png"
+    },
+    {
+      name: "Website Maintenance and Support",
+      logoPath: "assets/icons/Website Maintenance and Support.png"
+    },
+    //repeat
+    {
+      name: "SEO",
+      logoPath: "assets/icons/SEO.png"
+    },
+    {
+      name: "Content Creation",
+      logoPath: "assets/icons/Content creation.png"
+    },
+    {
+      name: "Keyword Research",
+      logoPath: "assets/icons/Keyword research.png"
+    },
+    {
+      name: "Influencer Marketing",
+      logoPath: "assets/icons/Influencer Marketing.png"
+    },
+    {
+      name: "Traditional Marketing",
+      logoPath: "assets/icons/Traditional Marketing.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    },
+    {
+      name: "Website Development",
+      logoPath: "assets/icons/Website Development.png"
+    },
+    {
+      name: "Website Maintenance and Support",
+      logoPath: "assets/icons/Website Maintenance and Support.png"
+    },
+    //repeat
+    {
+      name: "SEO",
+      logoPath: "assets/icons/SEO.png"
+    },
+    {
+      name: "Content Creation",
+      logoPath: "assets/icons/Content creation.png"
+    },
+    {
+      name: "Keyword Research",
+      logoPath: "assets/icons/Keyword research.png"
+    },
+    {
+      name: "Influencer Marketing",
+      logoPath: "assets/icons/Influencer Marketing.png"
+    },
+    {
+      name: "Traditional Marketing",
+      logoPath: "assets/icons/Traditional Marketing.png"
+    },
+    {
+      name: "UI/UX Design",
+      logoPath: "assets/icons/UI_UX design.png"
+    },
+    {
+      name: "Website Development",
+      logoPath: "assets/icons/Website Development.png"
+    },
+    {
+      name: "Website Maintenance and Support",
+      logoPath: "assets/icons/Website Maintenance and Support.png"
+    }
+  ];
+
+  constructor(private renderer: Renderer2,private router: Router) { }
 
   ngOnInit(): void {
     this.createBalls();
     // this.createShapes();
-    this.generateRandomBoxes();
-    this.animateBoxes();
     init({
     })
   }
+
+  toDefaultPath() {
+    document.getElementById('home-page')?.scrollIntoView({ behavior: 'smooth' });
+  }
   
+  toggleMenu(path?:any,goToDiv?:any){
+    if(path && goToDiv) {
+      if (path) {
+        this.router.navigate([path]).then(() => {
+          if (goToDiv) {
+            document.getElementById(goToDiv)?.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      } else {
+        if (goToDiv) {
+          document.getElementById(goToDiv)?.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+    
+    if(window.innerWidth <= 768) {
+      this.showMenu = !this.showMenu;
+    }
+    if (this.showMenu) {
+      this.isHidden = false
+      this.renderer.addClass(document.body, 'no-scroll');
+    } else {
+      this.renderer.removeClass(document.body, 'no-scroll');
+    }
+
+    this.showNavList = !this.showNavList;
+    this.currentClass = this.currentClass === 'toggle-menu' ? 'close-menu' : 'toggle-menu';
+  }
+
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     if (this.showMenu && window.innerWidth <= 768) {
@@ -230,7 +449,6 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  
   createBalls() {
     const colors = ["#FFF", "#ffffff00"];
     const numBalls = 80;
@@ -272,83 +490,5 @@ export class HomeComponent implements OnInit{
         }
       );
     });
-  }
-
-  toggleMenu(){
-    if(window.innerWidth <= 768) {
-      this.showMenu = !this.showMenu;
-    }
-    if (this.showMenu) {
-      this.isHidden = false
-      this.renderer.addClass(document.body, 'no-scroll');
-    } else {
-      this.renderer.removeClass(document.body, 'no-scroll');
-    }
-  }
-
-  generateRandomBoxes(): void {
-    let containerwidth = document.querySelector('.clients-container') as HTMLElement;
-    let containerSize = window.innerWidth <= 768 ? containerwidth.offsetWidth : 600;
-    let boxSize = window.innerWidth <= 768 ? 80 : 100;
-
-    const overlap = 3;
-    const numberOfBoxes = this.clientImages.length;
-
-    for (let i = 0; i < numberOfBoxes; i++) {
-      let positionValid = false;
-      let top = 0;
-      let left = 0;
-
-      while (!positionValid) {
-        top = Math.random() * (containerSize - boxSize);
-        left = Math.random() * (containerSize - boxSize);
-
-        positionValid = this.checkPosition(top, left, boxSize, overlap);
-      }
-
-      const zIndex = Math.floor(Math.random() * 10) + 1; 
-      const imagePath = this.getRandomImagePath();
-
-      this.boxes.push({ top, left, zIndex,imagePath });
-    }
-  }
-
-  checkPosition(top: number, left: number, boxSize: number, overlap: number): boolean {
-    if (this.boxes.length === 0) {
-      return true;
-    }
-
-    for (let box of this.boxes) {
-      const topDiff = Math.abs(box.top - top);
-      const leftDiff = Math.abs(box.left - left);
-
-      if ((topDiff < boxSize - overlap && topDiff > boxSize + overlap) ||
-          (leftDiff < boxSize - overlap && leftDiff > boxSize + overlap)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  animateBoxes(): void {
-    let containerwidth = document.querySelector('.clients-container') as HTMLElement;
-    let containerSize = window.innerWidth <= 768 ? containerwidth.offsetWidth : 600;
-    let boxSize = window.innerWidth <= 768 ? 80 : 100;
-
-    setInterval(() => {
-      this.boxes.forEach(box => {
-        box.top = Math.random() * (containerSize - boxSize);
-        box.left = Math.random() * (containerSize - boxSize);
-        box.zIndex = Math.floor(Math.random() * 10) + 1;
-      });
-    }, 2000);
-  }
-
-  private currentIndex = 0;
-  getRandomImagePath(): string {
-    const imagePath = this.clientImages[this.currentIndex];
-    this.currentIndex = (this.currentIndex + 1) % this.clientImages.length;
-    return imagePath;
-  }
-  
+  }  
 }
