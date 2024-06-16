@@ -7,7 +7,7 @@
                 <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logoPath" [alt]="logoAltText"></a>
             </div>
             <div class="nav-bar">
-                <div class="toggle-menu" [ngClass]="currentClass" [ngClass]="{'showMenu': showMenu}" (click)="toggleMenu()">
+                <div class="toggle-menu" [ngClass]="{'toggle-menu': currentClass === 'toggle-menu', 'close-menu': currentClass === 'close-menu', 'showMenu': showMenu}"  (click)="toggleMenu()">
                     <span></span><span></span><span></span>
                 </div>
                 <ul class="nav-list" [ngClass]="{'show-nav-list':showNavList}">
@@ -48,14 +48,12 @@
                 <div class="other-services">
                     <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="500" data-aos-delay="100">Engaging Digital Experiences</h2>
                     <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
-
                         <div class="slider">
                             <div class="branding" *ngFor="let item of servicesList">
                                 <img [src]="item.logoPath" alt="">
                                 <h2>{{item.name}}</h2>
                             </div>
                         </div>
-
                         <div class="slider">
                             <div class="branding" *ngFor="let item of servicesList2">
                                 <img [src]="item.logoPath" alt="">
@@ -110,19 +108,17 @@
             <h1 class="section-header" data-aos="zoom-in" data-aos-duration="500">Whom We<span>Served</span></h1>
             <div class="clients-container" data-aos="fade-up" data-aos-duration="300" data-aos-delay="10">
                 <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
-
                     <div class="slider">
                         <div class="branding" *ngFor="let item of clientImages">
                             <img data-aos="zoom-in" [src]="item" alt="">
                         </div>
                     </div>
-
                     <div class="slider">
                         <div class="branding" *ngFor="let item of clientImages2">
                             <img [src]="item" alt="">
                         </div>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
 
