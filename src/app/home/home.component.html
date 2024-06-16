@@ -123,9 +123,44 @@
         </div>
 
         <div class="sections" id="contact-us" >
-            <h1 class="section-header" data-aos="fade-up" data-aos-duration="200">let's Get in Touch</h1>
-            <div class="contact-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+            <div class="contact-wrapper">
+                <div class="wrapper-logo" data-aos="zoom-in" data-aos-duration="500">
+                    <img [src]="logoPath" alt="">
+                </div>
+                <div class="wrapper-deatils">
+                    <h1 class="section-header" data-aos="fade-up" data-aos-duration="200">let's Get in Touch</h1>
+                    <div class="contact-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="300">
+                            <div class="icon">
+                                <i class="fa-solid fa-phone" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="details">
+                                <h2>+91 84015 89892</h2>
+                                <h2>+91 84013 89892</h2>
+                            </div>
+                        </div>
+                        <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="400">
+                            <div class="icon">
+                                <i class="fa-solid fa-envelope" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="details">
+                                <h2><a href="mailto:Info@gravitydots.in">Info@gravitydots.in</a></h2>
+                                <h2><a href="mailto:Gravitydots98@gmail.com">Gravitydots98@gmail.com</a></h2>
+                            </div>
+                        </div>
+                        <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="500">
+                            <div class="icon">
+                                <i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
+                            </div>
+                            <div class="details">
+                                <h2>Thaltej, Ahmedabad</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="contact-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="300">
                     <div class="icon">
                         <i class="fa-solid fa-phone" style="color: #ffffff;"></i>
                     </div>
@@ -134,7 +169,7 @@
                         <h2>+91 84013 89892</h2>
                     </div>
                 </div>
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="400">
                     <div class="icon">
                         <i class="fa-solid fa-envelope" style="color: #ffffff;"></i>
                     </div>
@@ -143,7 +178,7 @@
                         <h2><a href="mailto:Gravitydots98@gmail.com">Gravitydots98@gmail.com</a></h2>
                     </div>
                 </div>
-                <div class="contact-details" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                <div class="contact-details" data-aos="flip-up" data-aos-duration="500" data-aos-delay="500">
                     <div class="icon">
                         <i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
                     </div>
@@ -151,12 +186,24 @@
                         <h2>Thaltej, Ahmedabad</h2>
                     </div>
                 </div>
+            </div> -->
+
+            <div class="footer">
+                <div class="social-icons">
+                    <div class="icon" *ngFor="let icon of socialIcons">
+                      <a [href]="icon.href" target="_blank"><i [class]="icon.iconClass" [ngStyle]="{ color: icon.color }"></i></a>
+                    </div>
+                </div>
+
+                <div class="rights-section">
+                    <p>&copy; GravityDots. All rights reserved</p>
+                </div>
             </div>
         </div>
 
         <!---------------------- footer ---------------------->
 
-        <div class="footer">
+        <!-- <div class="footer">
             <div class="logo">
                 <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logopathTwo" [alt]="logoAltText"></a>
             </div>
@@ -165,6 +212,6 @@
                   <a [href]="icon.href" target="_blank"><i [class]="icon.iconClass" [ngStyle]="{ color: icon.color }"></i></a>
                 </div>
               </div>
-        </div>
+        </div> -->
     </div> 
 </div>

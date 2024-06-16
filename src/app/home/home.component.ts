@@ -365,7 +365,7 @@ export class HomeComponent implements OnInit{
         }
       }
     }
-    
+
     if(window.innerWidth <= 768) {
       this.showMenu = !this.showMenu;
     }
@@ -460,7 +460,13 @@ export class HomeComponent implements OnInit{
       this.renderer.setStyle(ball, 'background', colors[Math.floor(Math.random() * colors.length)]);
       this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 95)}vw`);
       this.renderer.setStyle(ball, 'border', '1px solid white');
-      this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 550)}vh`);
+
+      if(window.innerWidth <= 425) {
+        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 500)}vh`);
+      }
+      else {
+        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 550)}vh`);
+      }
       this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
       const size = `${Math.random()}em`;
       this.renderer.setStyle(ball, 'width', size);
