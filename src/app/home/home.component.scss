@@ -849,9 +849,11 @@ svg{
     
                             &:nth-child(1) {
                                 animation: service-right-to-left-scroll 100s linear infinite;
+                                -webkit-animation: service-right-to-left-scroll 100s linear infinite;
                             }
                             &:nth-child(2) {
                                 animation: service-left-to-right-scroll 100s linear infinite;
+                                -webkit-animation: service-left-to-right-scroll 100s linear infinite;
                             }
     
                             .branding {
@@ -1038,7 +1040,6 @@ svg{
             background: linear-gradient(180deg, #12100E,#2B4162);
             background: linear-gradient(180deg, #2B4162,#12100E);
             background-attachment: fixed;
-
             height: 100vh;
             // border-radius: 0 0 100px 100px;
 
@@ -1067,9 +1068,11 @@ svg{
     
                         &:nth-child(1){
                             animation: clients-right-to-left-scroll 100s linear infinite;
+                            -webkit-animation:clients-right-to-left-scroll 100s linear infinite;
                         }
                         &:nth-child(2) {
                             animation: clients-left-to-right-scroll 100s linear infinite;
+                            -webkit-animation:clients-left-to-right-scroll 100s linear infinite;
                         }
     
                         .branding {
@@ -1432,7 +1435,7 @@ svg{
                             }
                             .branding{
                                 img{
-                                    width: 80px;
+                                    width: 50px;
                                 }
                             }
                         }
