@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit{
   @ViewChild('main', { static: true }) main!: ElementRef;
   @ViewChild('homePage', { static: true }) homePage!: ElementRef;
   @ViewChild('container', { static: true }) container!: ElementRef;
+  @ViewChild('contactUs') contactUs!: ElementRef;
+
 
   public logoPath = 'assets/GRAVITYDOTS LOGO.png';
   public defaultHomePath = '/'
@@ -32,27 +34,30 @@ export class HomeComponent implements OnInit{
   private scrollThreshold = 100;
   public currentClass: string = 'toggle-menu';
   public showNavList:boolean = false;
-  
+  public activeIndex: number | null = null;
+  public backGroundImage = '';
+
   public socialIcons = [
-    { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram', color: '#ffffff' },
-    { href: 'https://www.facebook.com/GravityDots', iconClass: 'fa-brands fa-facebook', color: '#ffffff' },
-    { href: 'https://www.linkedin.com/company/gravitydots/', iconClass: 'fa-brands fa-linkedin', color: '#ffffff' }
+    { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram'},
+    { href: 'https://www.facebook.com/GravityDots', iconClass: 'fa-brands fa-facebook'},
+    { href: 'https://www.linkedin.com/company/gravitydots/', iconClass: 'fa-brands fa-linkedin'}
   ];
 
   public navList = [
     {name:'home',path:'/',id:'home-page'},
     {name:'services',path:'/services',id:'services'},
     {name:'about us',path:'/about-us',id:'about-us'},
+    // {name:'portfolio',path:'/portfolio',id:'portfolio'},
     {name:'contact us',path:'/contact-us',id:'contact-us'}
   ];
 
   public mainServices = [
-    { imgSrc: 'assets/services/Branding.jpg', description: 'Branding' },
-    { imgSrc: 'assets/services/Printing Editorials & Packaging design.jpg', description: 'Printing Editorials & Packaging design' },
-    { imgSrc: 'assets/services/Digital_ Social Media management.jpg', description: 'Digital/ Social Media management' },
-    { imgSrc: 'assets/services/Paid Advertising.jpg', description: 'Paid Advertising' },
-    { imgSrc: 'assets/services/Creative Website Developmen.jpg', description: 'Creative Website Development' },
-    { imgSrc: 'assets/services/Seo.jpg', description: 'Content creation <br>& <br>SEO' }
+    { imgSrc: 'assets/services/Branding.jpg', description: 'Branding', id:'branding'},
+    { imgSrc: 'assets/services/Printing Editorials & Packaging design.jpg', description: 'Printing Editorials & Packaging design', id:'printing' },
+    { imgSrc: 'assets/services/Digital_ Social Media management.jpg', description: 'Digital/ Social Media management', id:'dsm' },
+    { imgSrc: 'assets/services/Paid Advertising.jpg', description: 'Paid Advertising', id:'ads' },
+    { imgSrc: 'assets/services/Creative Website Developmen.jpg', description: 'Creative Website Development', id:'web' },
+    { imgSrc: 'assets/services/Seo.jpg', description: 'Content creation <br>& <br>SEO', id:'seo' }
   ];
 
   public clientImages: string[] = [
@@ -69,9 +74,9 @@ export class HomeComponent implements OnInit{
     'assets/clients/11.png',
     'assets/clients/12.png',
         // list repeat
-    'assets/clients/1.png',
-    'assets/clients/2.png',
-    'assets/clients/3.png',
+    'assets/clients/25.jpg',
+    'assets/clients/26.jpg',
+    'assets/clients/27.jpg',
     'assets/clients/4.png',
     'assets/clients/5.png',
     'assets/clients/6.png',
@@ -338,9 +343,34 @@ export class HomeComponent implements OnInit{
     }
   ];
 
+  public portfolio = [
+    { name: 'Branding'},
+    { name: 'Printing Editorials & Packaging design'},
+    { name: 'Digital/ Social Media management'},
+    { name: 'Paid Advertising'},
+    { name: 'Creative Website Development'},
+    { name: 'Content creation & SEO'}
+  ];
+
+  public portfolioImages = [
+    {path:"assets/portfolio/BRANDING.jpg", name:'branding', id:'branding'},
+    {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
+    {path:"assets/portfolio/BRANDING (3).jpg",name:'branding', id:'branding'},
+    {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
+    {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
+    {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
+    {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
+    {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
+    {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
+    {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
+    {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
+  ]
+
+
   constructor(private renderer: Renderer2,private router: Router) { }
 
   ngOnInit(): void {
+    this.backGroundImage = `url('${this.portfolioImages[0].path}')`;
     this.createBalls();
     // this.createShapes();
     init({
@@ -376,18 +406,22 @@ export class HomeComponent implements OnInit{
       this.renderer.removeClass(document.body, 'no-scroll');
     }
 
+    if(path === '/contact-us' && goToDiv === 'contact-us'){
+      let outer = document.querySelector('.main-outer') as HTMLElement;
+      window.scrollTo(0,outer.offsetHeight)
+    }
+
     this.showNavList = !this.showNavList;
     this.currentClass = this.currentClass === 'toggle-menu' ? 'close-menu' : 'toggle-menu';
   }
-
+  
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
+  onWindowScroll():void {
     if (this.showMenu && window.innerWidth <= 768) {
       return;
     }
 
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
     if (currentScroll > this.scrollThreshold) {
       if (currentScroll > this.lastScrollTop) {
         this.isHidden = true; // Scroll down
@@ -395,8 +429,11 @@ export class HomeComponent implements OnInit{
         this.isHidden = false; // Scroll up
       }
     }
-
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }
+
+  goToService(service:any){
+    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   createShapes() {
@@ -462,10 +499,10 @@ export class HomeComponent implements OnInit{
       this.renderer.setStyle(ball, 'border', '1px solid white');
 
       if(window.innerWidth <= 425) {
-        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 500)}vh`);
+        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 400)}vh`);
       }
       else {
-        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 550)}vh`);
+        this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 450)}vh`);
       }
       this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
       const size = `${Math.random()}em`;
@@ -497,4 +534,5 @@ export class HomeComponent implements OnInit{
       );
     });
   }  
+
 }

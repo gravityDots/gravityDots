@@ -10,13 +10,15 @@ import { ServicesComponent } from './services/services.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ServicesComponent,
     AboutusComponent,
-    ContactusComponent
+    ContactusComponent,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,
