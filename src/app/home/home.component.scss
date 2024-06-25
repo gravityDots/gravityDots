@@ -9,30 +9,24 @@ $secondary-color-light:#775ae080;
         grid-template-columns: repeat($cols, 1fr);
         grid-template-rows: repeat($rows, 100% / $rows);
 
-        li:last-child:after,
-        li:last-child:before {
+        li:last-child:after, li:last-child:before {
             left: 100% * (($cols - $n) % $cols);
             transform: translate3d(-100% * (($cols - 1) / 2), -100% * (($rows - 1) / 2), 0);
         }
 
         @for $i from 1 through $n - 1 {
-            $x: (
-                $cols - $i) % $cols;
+            $x: ($cols - $i) % $cols;
             $y: $rows - floor(($i - 1) / $cols) - 1;
 
-            li:nth-child(#{$i}):hover~li:last-child:after,
-            li:nth-child(#{$i}):hover~li:last-child:before {
-                transform: translate3d(-$x*100%, -$y*100%, 0
-                );
-        }
+            li:nth-child(#{$i}):hover~li:last-child:after,li:nth-child(#{$i}):hover~li:last-child:before {
+                transform: translate3d(-$x*100%, -$y*100%, 0);
+            }
     }
 
-    li:last-child:hover:after,
-    li:last-child:hover:before {
+    li:last-child:hover:after, li:last-child:hover:before {
         transform: translate3d(-100% * (($cols - $n) % $cols), 0%, 0);
     }
 }
-
 }
 
 @mixin colors($n, $colors ) {
@@ -918,40 +912,45 @@ svg{
                                         transition: .6s .3s;
                                     }
                                 }
+                                &:hover ~ li:last-child:after, &:hover ~ li:last-child:before, &:last-child:hover:after, &:last-child:hover:before {
+                                    opacity: 1;
+                                    transition: 1s ease;
+                                }
+
+                                &:last-child{
+                                    &:after,&:before {
+                                        content: "";
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 100%;
+                                        top: 0;
+                                        pointer-events: none;
+                                        clip-path:polygon(1 rem 1 rem, 1 rem calc(100% - #{1 rem}), calc(100% - #{1 rem}) calc(100% - #{1 rem}), calc(100% - #{1 rem}) 1 rem);
+                                        -webkit-clip-path:polygon(1 rem 1 rem, 1 rem calc(100% - #{1 rem}), calc(100% - #{1 rem}) calc(100% - #{1 rem}), calc(100% - #{1 rem}) 1 rem);
+                                        opacity: 0;
+                                        transition: opacity 1s, transform 1s 1s;
+                                    }
+
+                                    &:after{
+                                        mix-blend-mode: multiply;
+                                        background: #aaafc3;
+                                    }
+
+                                    &:before{
+                                        backdrop-filter: grayscale(100%) blur(4px);
+                                        -webkit-backdrop-filter: grayscale(100%) blur(4px);
+                                    }
+
+                                    &:hover {
+                                        img{
+                                            transition-delay: .5s;
+                                            transition: 1s ease;
+                                            filter:grayscale(100%) blur(4px)
+                                        }
+                                    }
+                                }
                             }
-    
-                            li:hover~li:last-child:after,
-                            li:last-child:hover:after,
-                            li:hover~li:last-child:before,
-                            li:last-child:hover:before {
-                                opacity: 1;
-                                transition: 1s ease;
-                            }
-    
-                            li:last-child:after,
-                            li:last-child:before {
-                                content: "";
-                                position: absolute;
-                                width: 100%;
-                                height: 100%;
-                                top: 0;
-                                pointer-events: none;
-                                clip-path:polygon(1 rem 1 rem, 1 rem calc(100% - #{1 rem}), calc(100% - #{1 rem}) calc(100% - #{1 rem}), calc(100% - #{1 rem}) 1 rem);
-                                -webkit-clip-path:polygon(1 rem 1 rem, 1 rem calc(100% - #{1 rem}), calc(100% - #{1 rem}) calc(100% - #{1 rem}), calc(100% - #{1 rem}) 1 rem);
-                                opacity: 0;
-                                transition: opacity 1s, transform 1s 1s;
-                            }
-    
-                            li:last-child:after {
-                                mix-blend-mode: multiply;
-                                background: #aaafc3;
-                            }
-    
-                            li:last-child:before {
-                                backdrop-filter: grayscale(100%) blur(4px);
-                                -webkit-backdrop-filter: grayscale(100%) blur(4px);
-                            }
-    
+
                             @include colors(6, [$primary-color, $secondary-color,$primary-color, $secondary-color,$primary-color, $secondary-color]);
                         }
     
@@ -1082,14 +1081,15 @@ svg{
                                 color: #FFF;
                                 letter-spacing: 1px;
                                 padding: 50px;
-                                text-align: center;
+                                text-align: justify;
+                                transition: .3s;
             
                                 span{
                                     display: inline-block;
                                     padding-top: 10px;
             
                                     i{
-                                        color: $secondary-color;
+                                        color: $primary-color;
                                     }
                                 }
                             }
@@ -1245,7 +1245,7 @@ svg{
                                 @include flexproperty(flex,row,center,center);
             
                                 img {
-                                    width: 150px;
+                                    width: 12vmin;
                                     transition: .2s;
     
                                     &:hover{
@@ -1291,7 +1291,7 @@ svg{
                                         padding: 12px 8px;
             
                                         img{
-                                            width: 4vw;
+                                            // width: 4vw;
                                         }
                                         h2{
                                             font-size: 2.5vw;
@@ -1314,6 +1314,7 @@ svg{
                             .inner-div{
                                 width: 90%;
                                 h2{
+                                    padding: 30px;
                                     font-size: 3vw;
                                     margin-top: 0;
                                 }
@@ -1369,7 +1370,7 @@ svg{
                             .slider{
                                 .branding{
                                     img{
-                                        width: 100px;
+                                        // width: 100px; 
                                     }
                                 }
                             }
@@ -1396,6 +1397,7 @@ svg{
                             .inner-div{
                                 width: 100%;
                                 h2{
+                                    padding: 20px 15px;
                                     margin-top: 0;
                                 }
                             }
@@ -1640,7 +1642,7 @@ svg{
                 display: none;
             }
             .wrapper-deatils{
-                justify-content: space-between;
+                // justify-content: space-between;
                 width: 100%;
                 height: 70vh;
 
