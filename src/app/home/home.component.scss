@@ -1449,6 +1449,7 @@ svg{
     }
 
     &::after{
+        z-index: 1;
         position: absolute;
         content: '';
         bottom: -120px;
@@ -1461,8 +1462,7 @@ svg{
 }
 
 
-#contact-us {
-    z-index: -1;
+.contact-us {
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
@@ -1577,6 +1577,9 @@ svg{
 
             .icon {
                 margin: 10px 20px;
+                cursor: pointer;
+                z-index: 1;
+
 
                 i{
                     font-size: 35px;
@@ -1672,7 +1675,7 @@ svg{
 }
 
 @media (max-width:425px){
-    #contact-us{
+    .contact-us{
         justify-content: space-between;
     }
 }
