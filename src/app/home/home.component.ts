@@ -403,24 +403,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
       { name: 'Content creation & SEO',path:"../../assets/compressed/SEO.webp",id:'seo'}
     ];
 
-    // const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
-    //   entries.forEach(entry => {
-    //     if (entry.isIntersecting) {
-    //       this.loadImage(entry.target.getAttribute('data-src'));
-    //       observer.unobserve(entry.target);
-    //     }
-    //   });
-    // });
-  
-    // this.portfolio.forEach(item => {
-    //   const img = document.createElement('img');
-    //   img.setAttribute('data-src', item.path);
-    //   img.classList.add('lazyloaded');
-    //   observer.observe(img);
-    // });
-
     this.createBalls();
-    // this.createShapes();
     init({
     })
   }
@@ -478,7 +461,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
     }
 
     if(path === '/contact-us' && goToDiv === 'contact-us'){
-      let outer = document.querySelector('.main-outer') as HTMLElement;
+      let outer = document.querySelector('.main') as HTMLElement;
       window.scrollTo(0,outer.offsetHeight)
     }
 
