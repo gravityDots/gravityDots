@@ -272,91 +272,15 @@ svg{
     }
 }
 
-.main-outer{
-    position: relative;
-    
+// .main-outer{
+    // position: relative;
     .main {
         width: 100vw;
+        height: auto;
         @include flexproperty(flex,column,center,center);
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
+        // overflow: hidden;
+        // position: relative;
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    
-        .shape {
-            position: absolute;
-            border: 1px solid white;
-            background: #FFF;
-          }
-          
-          .square {
-            width: 1em;
-            height: 1em;
-          }
-          
-          .triangle {
-            width: 0;
-            height: 0;
-            border-left: 0.5em solid transparent;
-            border-right: 0.5em solid transparent;
-            border-bottom: 1em solid white;
-          }
-          
-          .pentagon {
-            position: relative;
-            width: 1em;
-            height: 1em;
-            background: transparent;
-          }
-          
-          .pentagon:before {
-            content: "";
-            position: absolute;
-            top: -0.5em;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 0.5em solid transparent;
-            border-right: 0.5em solid transparent;
-            border-bottom: 0.5em solid white;
-          }
-          
-          .pentagon:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 1em;
-            height: 1em;
-            background: white;
-          }
-          
-          .hexagon {
-            width: 1em;
-            height: 0.6em;
-            background: white;
-            position: relative;
-          }
-          
-          .hexagon:before,
-          .hexagon:after {
-            content: "";
-            position: absolute;
-            width: 0;
-            border-left: 0.5em solid transparent;
-            border-right: 0.5em solid transparent;
-          }
-          
-          .hexagon:before {
-            bottom: 100%;
-            border-bottom: 0.3em solid white;
-          }
-          
-          .hexagon:after {
-            top: 100%;
-            width: 0;
-            border-top: 0.3em solid white;
-          }
           
         .ball {
             position: absolute;
@@ -411,11 +335,11 @@ svg{
             display: none;
         }
         .home-page {
-            position: relative;
             width: 100vw;
             height: 100vh;
             @include flexproperty(flex,column,center,center);
-            overflow: hidden;
+            // overflow: hidden;
+
     
             .header {
                 font-family: 'sans-serif';
@@ -541,9 +465,9 @@ svg{
                 height: 100%;
                 @include flexproperty(flex,column,center,center);
                 font-family: 'Chavelite';
-                position: relative;
+                // position: relative;
                 transition: transform 0.3s ease-out;
-                
+
                 .head-line-title{
                     margin-bottom: 30px;
                     text-align: center;
@@ -766,9 +690,10 @@ svg{
     
         .container {
             width: 100vw;
+            overflow-x: hidden;
             @include flexproperty(flex,column,center,center);
-            position: relative;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            // position: relative;
+            // background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     
             .editorial {
                 display: block;
@@ -836,9 +761,9 @@ svg{
             }
     
             .sections {
-                position: relative;
+                // position: relative;
                 width: 100vw;
-                height: auto;
+                // height: auto;
     
                 .section-header {
                     width: max-content;
@@ -852,7 +777,8 @@ svg{
     
             #services {
                 @include flexproperty(flex,column,center,flex-start);
-    
+                position: relative;
+
                 .section-header {
                     position: absolute;
                     top: 50px;
@@ -868,7 +794,8 @@ svg{
                     .main-services {
                         display: flex;
                         flex-wrap: wrap;
-    
+                        height: 100vh;
+
                         .services-grid {
                             display: grid;
                             overflow: hidden;
@@ -967,7 +894,7 @@ svg{
     
                     .other-services {
                         padding: 80px 50px 70px 50px;
-                        width: 100%;
+                        width: 100vw;
                         @include flexproperty(flex,column,center,center);
     
                         .other-services-title{
@@ -992,9 +919,10 @@ svg{
                             }
                         }
                         .slider-bg{
+                            width: 100%;
                             overflow: hidden;
                             @include flexproperty(flex,column,center,center);
-                            -webkit-mask-image: linear-gradient(90deg,transparent,#fff 20%, #FFF 80%,transparent);
+                            -webkit-mask-image: linear-gradient(90deg,transparent,#fff 10%, #FFF 90%,transparent);
     
                             .slider {
                                 width: max-content;
@@ -1166,7 +1094,7 @@ svg{
                                 position: absolute;
                                 content: '';
                                 top: 5%;
-                                right: -8%;
+                                right: 0%;
                                 width: 300px;
                                 height: 300px;
                                 background: url('https://i.postimg.cc/GmMbTD3W/rocket.png') no-repeat;
@@ -1190,16 +1118,72 @@ svg{
     
                     }
                 }
-                
-    
             }
-    
+            
+            #portfolio{
+                width: auto;
+                height: 100vh;
+                @include flexproperty(flex,row,center,center);
+
+                .portfolio-container{
+                    width: 100%;
+                    height: 100%;// background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+                    // position: relative;
+                    transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
+                    opacity: 1;
+
+                    .portfolioImageContainer{
+                        @include flexproperty(flex,row,center,flex-start);
+                        overflow-x: hidden;
+                        height: 100%;
+                        flex-wrap: nowrap;
+
+                        .image-panel{
+                            display: flex;
+                            margin: 10px;
+
+                            h2{
+                                font-size: 5vw;
+                                writing-mode: vertical-lr;
+                                transform: rotate(180deg);
+                                margin: 0 40px 0 40px;
+                                text-align: center;
+                                mix-blend-mode: difference;
+                                color: transparent;
+                                text-transform: capitalize;
+                                -webkit-text-stroke: 1px white;
+                                -webkit-text-fill-color: transparent;
+                            }
+
+                           .portfolio-images{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            img{
+                                margin:0 10px;
+                                width: 80vw;
+                                border-radius: 8px;
+                                transition: .3s;
+
+                                &:hover{
+                                    transform: scale(1.01)
+                                }
+                            }
+                           }
+                        }
+
+                    }
+
+                }
+
+            }
+
             #clients{
                 @include flexproperty(flex,column,center,space-evenly);
-                padding: 0px 50px 0px 50px;
                 height: 100vh;
-                position: relative;
-                overflow: visible;
+                // background-color: yellow;
+                // position: relative;
     
                 .section-header{
                     left: 100px;
@@ -1215,6 +1199,7 @@ svg{
                     width: 100%;
     
                     .slider-bg{
+                        -webkit-mask-image: linear-gradient(90deg,transparent,#fff 10%, #FFF 90%,transparent);
                         overflow:hidden;
     
                         .slider {
@@ -1355,7 +1340,9 @@ svg{
                         }
                     }
                 }
-    
+                #portfolio{
+                    height: 60vh;
+                }
                 #clients{
                     margin-top: 50px;
                     flex-direction: column;
@@ -1414,6 +1401,9 @@ svg{
                         }    
                     }
                 }
+                #portfolio{
+                    height: 30vh;
+                }
                 #clients{
                     .section-header{
                         font-size: 6vw;
@@ -1448,28 +1438,28 @@ svg{
     
     }
 
-    &::after{
-        z-index: 1;
-        position: absolute;
-        content: '';
-        bottom: -120px;
-        width: 100%;
-        height: 120px;
-        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-        clip-path: ellipse(60% 85% at 50% 100%);
-        transform: rotate(180deg);
-    }
-}
+    // &::after{
+    //     z-index: 1;
+    //     position: absolute;
+    //     content: '';
+    //     bottom: -120px;
+    //     width: 100%;
+    //     height: 120px;
+    //     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    //     clip-path: ellipse(60% 85% at 50% 100%);
+    //     transform: rotate(180deg);
+    // }
 
+// }
 
 .contact-us {
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;
-    width: 100vw;
-    height: 100vh;
     padding: 10px;
-    transform: translateY(0);
     transition: transform 0.5s ease-in-out;
     @include flexproperty(flex,column,center,center);
     background:url('../../assets/GRAVITY POST.jpg') no-repeat;

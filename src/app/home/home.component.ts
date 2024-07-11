@@ -1,27 +1,19 @@
-import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
 import {init} from 'aos';
 import { Router } from '@angular/router';
-
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [
-    trigger('moveBox', [
-      state('move', style({ transform: 'translateX(0) translateY(0)' })),
-      transition('* => move', [
-        animate('2s', style({ transform: 'translateX({{x}}px) translateY({{y}}px)' }))
-      ], { params: { x: 0, y: 0 } })
-    ])
-  ]
-
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit,AfterViewInit{
   @ViewChild('main', { static: true }) main!: ElementRef;
   @ViewChild('homePage', { static: true }) homePage!: ElementRef;
   @ViewChild('container', { static: true }) container!: ElementRef;
   @ViewChild('contactUs') contactUs!: ElementRef;
+  @ViewChild('portfolioImageContainer') portfolioImageContainer!: ElementRef;
 
 
   public logoPath = 'assets/GRAVITYDOTS LOGO.png';
@@ -34,8 +26,6 @@ export class HomeComponent implements OnInit{
   private scrollThreshold = 100;
   public currentClass: string = 'toggle-menu';
   public showNavList:boolean = false;
-  public activeIndex: number | null = null;
-  public backGroundImage = '';
 
   public socialIcons = [
     { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram'},
@@ -343,38 +333,119 @@ export class HomeComponent implements OnInit{
     }
   ];
 
-  public portfolio = [
-    { name: 'Branding'},
-    { name: 'Printing Editorials & Packaging design'},
-    { name: 'Digital/ Social Media management'},
-    { name: 'Paid Advertising'},
-    { name: 'Creative Website Development'},
-    { name: 'Content creation & SEO'}
-  ];
+  // public portfolio = [
+  //   { name: 'Branding',path:"../../assets/portfolio/BRANDING.jpg",id:'branding'},
+  //   { name: 'Printing Editorials & Packaging design',path:"../../assets/portfolio/Printing Editorials & Packaging design.jpg",id:'printing'},
+  //   { name: 'Digital/ Social Media management',path:"../../assets/portfolio/Social media.jpg",id:'dsm'},
+  //   { name: 'Paid Advertising',path:"../../assets/portfolio/Paid Advertising.jpg", id:'ads'},
+  //   { name: 'Creative Website Development',path:"../../assets/portfolio/BRANDING (2).jpg",id:'web'},
+  //   { name: 'Content creation & SEO',path:"../../assets/portfolio/SEO.jpg",id:'seo'}
+  // ];
+  public portfolio:any = [];
+  loadedImages: string[] = [];
 
   public portfolioImages = [
-    {path:"assets/portfolio/BRANDING.jpg", name:'branding', id:'branding'},
-    {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
-    {path:"assets/portfolio/BRANDING (3).jpg",name:'branding', id:'branding'},
-    {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
-    {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
-    {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
-    {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing Editorials <br>& <br> Packaging design',id:'printing'},
-    {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
-    {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
-    {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
-    {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
+    {
+      name:"branding",
+      id:'branding',
+      images:[
+        {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
+        {path:"assets/portfolio/BRANDING.jpg", name:'branding', id:'branding'},
+        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding', id:'branding'},
+      ]
+    },
+    {
+      name:"Packaging design <br> & <br> Printing Editorials",
+      id:'printing',
+      images:[
+        {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+      ]
+    },
+    {
+      name:"Social media",
+      id:'dsm',
+      images:[
+        {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
+        {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
+        {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
+      ]
+    },
+    {
+      name:"paid advertising",
+      id:'ads',
+      images:[
+        {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
+      ]
+    },
+    {
+      name:"SEO",
+      id:'seo',
+      images:[
+        {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
+      ]
+    }
+    
   ]
 
-
-  constructor(private renderer: Renderer2,private router: Router) { }
+  constructor(private renderer: Renderer2,private router: Router) {
+    gsap.registerPlugin(ScrollTrigger);
+   }
 
   ngOnInit(): void {
-    this.backGroundImage = `url('${this.portfolioImages[0].path}')`;
+    this.portfolio = [
+      { name: 'Branding',path:"../../assets/compressed/BRANDING (2).webp",id:'branding'},
+      { name: 'Printing Editorials & Packaging design',path:"../../assets/compressed/Printing Editorials & Packaging design.webp",id:'printing'},
+      { name: 'Digital/ Social Media management',path:"../../assets/compressed/Social media.webp",id:'dsm'},
+      { name: 'Paid Advertising',path:"../../assets/compressed/Paid Advertising.webp", id:'ads'},
+      { name: 'Creative Website Development',path:"../../assets/compressed/BRANDING (2).webp",id:'web'},
+      { name: 'Content creation & SEO',path:"../../assets/compressed/SEO.webp",id:'seo'}
+    ];
+
+    // const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+    //   entries.forEach(entry => {
+    //     if (entry.isIntersecting) {
+    //       this.loadImage(entry.target.getAttribute('data-src'));
+    //       observer.unobserve(entry.target);
+    //     }
+    //   });
+    // });
+  
+    // this.portfolio.forEach(item => {
+    //   const img = document.createElement('img');
+    //   img.setAttribute('data-src', item.path);
+    //   img.classList.add('lazyloaded');
+    //   observer.observe(img);
+    // });
+
     this.createBalls();
     // this.createShapes();
     init({
     })
+  }
+
+  ngAfterViewInit(): void {
+    // this.initGSAPAnimation();
+  }
+
+  initGSAPAnimation(): void {
+    const imagePanel = gsap.utils.toArray(".portfolio-images");
+
+    gsap.to(imagePanel, {
+      xPercent: -100 * (imagePanel.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.portfolio',
+        pin: true,
+        scrub: 2,
+        snap: 1 / (imagePanel.length - 1),
+        end: () => {
+          const portfolio = document.querySelector('.portfolio') as HTMLElement;
+          return "+=" + portfolio.offsetWidth;
+        }
+      }
+    });
   }
 
   toDefaultPath() {
@@ -430,60 +501,21 @@ export class HomeComponent implements OnInit{
       }
     }
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+
   }
 
-  goToService(service:any){
-    document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  createShapes() {
-    const colors = ["#FFF", "#ffffff00"];
-    const numShapes = 70;
-    const shapes: HTMLElement[] = [];
-    const shapeClasses = ['square', 'triangle', 'pentagon', 'hexagon'];
-  
-    for (let i = 0; i < numShapes; i++) {
-      let shape = this.renderer.createElement('div');
-      const shapeClass = shapeClasses[Math.floor(Math.random() * shapeClasses.length)];
-      
-      this.renderer.addClass(shape, 'shape');
-      this.renderer.addClass(shape, shapeClass);
-      this.renderer.setStyle(shape, 'background', colors[Math.floor(Math.random() * colors.length)]);
-      this.renderer.setStyle(shape, 'border', '1px solid white');
-      this.renderer.setStyle(shape, 'left', `${Math.floor(Math.random() * 95)}vw`);
-      this.renderer.setStyle(shape, 'top', `${Math.floor(Math.random() * 10)}vh`);
-      this.renderer.setStyle(shape, 'transform', `scale(${Math.random()})`);
-  
-      const size = `${Math.random()}em`;
-      if (shapeClass !== 'triangle') {
-        this.renderer.setStyle(shape, 'width', size);
-        this.renderer.setStyle(shape, 'height', size);
-      }
-  
-      shapes.push(shape);
-      this.renderer.appendChild(this.container.nativeElement, shape);
+  goToService(id:any){
+    let serviceListItem =  document.getElementById(id) as HTMLElement;
+    if(window.innerWidth <= 768) {
+      setTimeout(() => {
+        serviceListItem?.scrollIntoView({ behavior: 'smooth' });
+      }, 1500);
     }
-  
-    shapes.forEach((el, i) => {
-      let to = {
-        x: Math.random() * (i % 2 === 0 ? -11 : 11),
-        y: Math.random() * 12
-      };
-  
-      el.animate(
-        [
-          { transform: 'translate(0, 0)' },
-          { transform: `translate(${to.x}rem, ${to.y}rem)` }
-        ],
-        {
-          duration: (Math.random() + 1) * 2000, 
-          direction: 'alternate',
-          fill: 'both',
-          iterations: Infinity,
-          easing: 'ease-in-out'
-        }
-      );
-    });
+    else {
+      serviceListItem?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // serviceListItem.classList.add('active-portfolio')
   }
 
   createBalls() {
@@ -495,14 +527,14 @@ export class HomeComponent implements OnInit{
       let ball = this.renderer.createElement('div');
       this.renderer.addClass(ball, 'ball');
       this.renderer.setStyle(ball, 'background', colors[Math.floor(Math.random() * colors.length)]);
-      this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 95)}vw`);
       this.renderer.setStyle(ball, 'border', '1px solid white');
-
       if(window.innerWidth <= 425) {
         this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 400)}vh`);
+        this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 80)}vw`);
       }
       else {
         this.renderer.setStyle(ball, 'top', `${Math.floor(Math.random() * 450)}vh`);
+        this.renderer.setStyle(ball, 'left', `${Math.floor(Math.random() * 90)}vw`);
       }
       this.renderer.setStyle(ball, 'transform', `scale(${Math.random()})`);
       const size = `${Math.random()}em`;

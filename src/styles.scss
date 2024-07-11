@@ -23,11 +23,13 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 }
 body {
     width: 100vw;
-    height: 100%;
+    height: unset;
     overflow-x: hidden;
     font-family: 'Artemus',"Poppins", sans-serif;
-    background: linear-gradient(to bottom, #81a5e065 0%, #cc5ae032 100%);
+    // background: linear-gradient(to bottom, #81a5e065 0%, #cc5ae032 100%);
 }

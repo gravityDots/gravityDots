@@ -11,6 +11,8 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     BrowserModule,
     AppRoutingModule,
     AsaModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LazyLoadImageModule
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
   bootstrap: [AppComponent]

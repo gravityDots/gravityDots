@@ -1,135 +1,143 @@
-<div class="main-outer">
-    <div class="main" #main>
 
-        <!---------------------- home page ---------------------->
-        <div class="home-page" id="home-page">
-            <div class="header" [class.hidden]="isHidden">
-                <div class="logo">
-                    <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logoPath" [alt]="logoAltText"></a>
-                </div>
-                <div class="nav-bar">
-                    <div class="toggle-menu" [ngClass]="{'toggle-menu': currentClass === 'toggle-menu', 'close-menu': currentClass === 'close-menu', 'showMenu': showMenu}"  (click)="toggleMenu()">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <ul class="nav-list" [ngClass]="{'show-nav-list':showNavList}">
-                        <li class="list-items" *ngFor="let item of navList" (click)="toggleMenu(item.path,item.id)"><a [routerLink]='item.path'>{{item.name}}</a></li>
-                    </ul>
-                </div>
+<div class="main" #main>
+
+    <!---------------------- home page ---------------------->
+    <div class="home-page" id="home-page">
+        <div class="header" [class.hidden]="isHidden">
+            <div class="logo">
+                <a [routerLink]="defaultHomePath" (click)="toDefaultPath()"><img [src]="logoPath" [alt]="logoAltText"></a>
             </div>
-    
-            <div class="home-page-content" #homePage>
-                <!-- <video autoplay muted loop id="backgroundVideo">
-                    <source src="../../assets/bg.webm" type="video/webm">
-                </video> -->
-                <div class="head-line-title" data-aos="fade-down" data-aos-delay="400" data-aos-duration="1200">
-                    <h1>Launch Your Brand Into <br><span>The Digital Orbit With</span> <br><span class="company-name">Gravity Dots</span></h1>
+            <div class="nav-bar">
+                <div class="toggle-menu" [ngClass]="{'toggle-menu': currentClass === 'toggle-menu', 'close-menu': currentClass === 'close-menu', 'showMenu': showMenu}"  (click)="toggleMenu()">
+                    <span></span><span></span><span></span>
                 </div>
-                <div class="tagline" data-aos="fade-down" data-aos-delay="600" data-aos-duration="1200">
-                    <p>We Elevate Your Online Presence</p>
-                </div>
-    
+                <ul class="nav-list" [ngClass]="{'show-nav-list':showNavList}">
+                    <li class="list-items" *ngFor="let item of navList" (click)="toggleMenu(item.path,item.id)"><a [routerLink]='item.path'>{{item.name}}</a></li>
+                </ul>
             </div>
         </div>
-    
-        <!---------------------- container ---------------------->
-        <div class="container" #container>
-            <div class="sections" id="services">
-                <h1 class="section-header" data-aos="fade-up" data-aos-duration="500" >What We Offer</h1>
-    
-                <div class="services-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div class="main-services">
-                        <ul class="services-grid" data-aos="zoom-in" data-aos-offset="290" data-aos-duration="200">
-                          <li *ngFor="let service of mainServices" (click)="goToService(service)">
-                            <img [src]="service.imgSrc" alt="" data-aos="zoom-in" data-aos-duration="1000">
-                            <span class="description" [innerHTML]="service.description"></span>
-                          </li>
-                        </ul>
-                    </div>
-    
-                    <div class="other-services">
-                        <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="500" data-aos-delay="100">Engaging Digital <span>Experiences</span></h2>
-                        <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="slider">
-                                <div class="branding" *ngFor="let item of servicesList">
-                                    <img [src]="item.logoPath" alt="">
-                                    <h2>{{item.name}}</h2>
-                                </div>
-                            </div>
-                            <div class="slider">
-                                <div class="branding" *ngFor="let item of servicesList2">
-                                    <img [src]="item.logoPath" alt="">
-                                    <h2>{{item.name}}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="home-page-content" #homePage>
+            <!-- <video autoplay muted loop id="backgroundVideo">
+                <source src="../../assets/bg.webm" type="video/webm">
+            </video> -->
+            <div class="head-line-title" data-aos="fade-down" data-aos-delay="400" data-aos-duration="1200">
+                <h1>Launch Your Brand Into <br><span>The Digital Orbit With</span> <br><span class="company-name">Gravity Dots</span></h1>
             </div>
-    
-            <div class="sections" id="about-us">
-                <h1 class="section-header" data-aos="fade-up" data-aos-duration="500">Get to <span>Know Us</span> </h1>
-                <div class="about-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-    
-                    <div class="about-us-details">
-                        <div class="inner-div" data-aos="zoom-in">
-                            <h2 data-aos="fade-up" data-aos-delay="100">In today's digital age, where competition rages online, a powerful brand identity and a strategically crafted digital presence are the inseparable twins driving success. At Gravity Dots, we understand this critical equation. We're not just another digital marketing agency; <br><br>we're your one-stop shop for all things digital, ready to propel your brand to the forefront of the online landscape Our comprehensive suite of digital marketing services is designed to empower businesses of all sizes to achieve their unique goals. <br><br>  Whether you're looking to build brand awareness, generate qualified leads, or skyrocket sales, we have the expertise and experience to help you navigate the ever-evolving digital world</h2>
-                        </div>
-                    </div>
-    
-                    <section class="team">
-                        <h2 class="team-heading" data-aos="zoom-in">The Masterminds Behind Gravity Dots</h2>
-        
-                        <div class="team-container">
-                            <div class="profile left" data-aos="custom-slide-left" data-aos-duration="400">
-                                <img src="../../assets/keyur.jpg" alt="" />
-                                <span class="name">Keyur P Mehta<br>
-                                    <p>Director</p>
-                                </span>
-                            </div>
-                            <div class="profile right" data-aos="custom-slide-right" data-aos-duration="400">
-                                <img src="../../assets/jatin.jpg" alt="" />
-                                <span class="name">Jatin H Kateliya<br>
-                                    <p>Director</p>
-                                </span>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <div class="about-us-details">
-                        <div class="inner-div" data-aos="zoom-in">
-                            <h2 data-aos="fade-up" data-aos-delay="100">At Gravity Dots, we believe in fostering collaborative partnerships with our clients. We take the time to understand your unique business goals, target audience, and brand identity. With this comprehensive understanding, we develop a customized digital marketing strategy that aligns seamlessly with your overall objectives. our expertise across all these areas – social media marketing, paid ads, SEO, website development, and captivating graphical work <br><br> Our team of passionate digital marketing experts is dedicated to staying ahead of the curve. We continuously research and adopt the latest trends and best practices to ensure your online presence remains not just relevant, but thrives in this ever-evolving digital ecosystem<br><br> <span><i><b>Keyur Mehta</b></i>, with his sharp analytical mind and <i><b>Jatin Kateliya</b></i>, a design virtuoso, bring a unique blend of expertise to the table</span></h2>
-                        </div>
-                    </div>
-                </div>
+            <div class="tagline" data-aos="fade-down" data-aos-delay="600" data-aos-duration="1200">
+                <p>We Elevate Your Online Presence</p>
             </div>
-    
-            <!-- <div class="sections" id="portfolio">
-                <div class="portfolio-container">
-                    
+
+        </div>
+    </div>
+
+    <!---------------------- container ---------------------->
+    <div class="container" #container>
+        <div class="sections" id="services">
+            <h1 class="section-header" data-aos="fade-up" data-aos-duration="500" >What We Offer</h1>
+
+            <div class="services-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <div class="main-services">
+                    <ul class="services-grid" data-aos="zoom-in" data-aos-offset="290" data-aos-duration="200">
+                        <li *ngFor="let service of mainServices" (click)="goToService(service.id)">
+                        <img [src]="service.imgSrc" alt="" data-aos="zoom-in" data-aos-duration="1000">
+                        <span class="description" [innerHTML]="service.description"></span>
+                        </li>
+                    </ul>
                 </div>
-            </div> -->
-    
-            <div class="sections" id="clients" #contactUs>
-                <h1 class="section-header" data-aos="zoom-in" data-aos-duration="500">Whom We<span>Served</span></h1>
-                <div class="clients-container" data-aos="fade-up" data-aos-duration="300" data-aos-delay="10">
+
+                <div class="other-services">
+                    <h2 class="other-services-title" data-aos="flip-up" data-aos-duration="500" data-aos-delay="100">Engaging Digital <span>Experiences</span></h2>
                     <div class="slider-bg" data-aos="fade-up" data-aos-duration="1000">
                         <div class="slider">
-                            <div class="branding" *ngFor="let item of clientImages">
-                                <img [src]="item" alt="">
+                            <div class="branding" *ngFor="let item of servicesList">
+                                <img [src]="item.logoPath" alt="">
+                                <h2>{{item.name}}</h2>
                             </div>
                         </div>
                         <div class="slider">
-                            <div class="branding" *ngFor="let item of clientImages2">
-                                <img [src]="item" alt="">
+                            <div class="branding" *ngFor="let item of servicesList2">
+                                <img [src]="item.logoPath" alt="">
+                                <h2>{{item.name}}</h2>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>        
-        </div> 
+            </div>
+        </div>
+
+        <div class="sections" id="about-us">
+            <h1 class="section-header" data-aos="fade-up" data-aos-duration="500">Get to <span>Know Us</span> </h1>
+            <div class="about-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+
+                <div class="about-us-details">
+                    <div class="inner-div" data-aos="zoom-in">
+                        <h2 data-aos="fade-up" data-aos-delay="100">In today's digital age, where competition rages online, a powerful brand identity and a strategically crafted digital presence are the inseparable twins driving success. At Gravity Dots, we understand this critical equation. We're not just another digital marketing agency; <br><br>we're your one-stop shop for all things digital, ready to propel your brand to the forefront of the online landscape Our comprehensive suite of digital marketing services is designed to empower businesses of all sizes to achieve their unique goals. <br><br>  Whether you're looking to build brand awareness, generate qualified leads, or skyrocket sales, we have the expertise and experience to help you navigate the ever-evolving digital world</h2>
+                    </div>
+                </div>
+
+                <section class="team">
+                    <h2 class="team-heading" data-aos="zoom-in">The Masterminds Behind Gravity Dots</h2>
     
-    </div>
+                    <div class="team-container">
+                        <div class="profile left" data-aos="custom-slide-left" data-aos-duration="400">
+                            <img src="../../assets/keyur.jpg" alt="" />
+                            <span class="name">Keyur P Mehta<br>
+                                <p>Director</p>
+                            </span>
+                        </div>
+                        <div class="profile right" data-aos="custom-slide-right" data-aos-duration="400">
+                            <img src="../../assets/jatin.jpg" alt="" />
+                            <span class="name">Jatin H Kateliya<br>
+                                <p>Director</p>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="about-us-details">
+                    <div class="inner-div" data-aos="zoom-in">
+                        <h2 data-aos="fade-up" data-aos-delay="100">At Gravity Dots, we believe in fostering collaborative partnerships with our clients. We take the time to understand your unique business goals, target audience, and brand identity. With this comprehensive understanding, we develop a customized digital marketing strategy that aligns seamlessly with your overall objectives. our expertise across all these areas – social media marketing, paid ads, SEO, website development, and captivating graphical work <br><br> Our team of passionate digital marketing experts is dedicated to staying ahead of the curve. We continuously research and adopt the latest trends and best practices to ensure your online presence remains not just relevant, but thrives in this ever-evolving digital ecosystem<br><br> <span><i><b>Keyur Mehta</b></i>, with his sharp analytical mind and <i><b>Jatin Kateliya</b></i>, a design virtuoso, bring a unique blend of expertise to the table</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div class="sections portfolio" id="portfolio">
+            <div class="portfolio-container">
+                <ul class="portfolioImageContainer">
+                    <li class="image-panel" *ngFor="let item of portfolioImages">
+                    <h2 [innerHTML]="item.name" [id]="item.id"></h2>
+                    <div class="portfolio-images" *ngFor="let list of item.images">
+                        <img [src]="list.path" [alt]="list.name">
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div> -->
+
+        <div class="sections" id="clients" #contactUs>
+            <h1 class="section-header" data-aos="zoom-in" >Whom We<span>Served</span></h1>
+            <div class="clients-container" data-aos="fade-up" data-aos-delay="10">
+                <div class="slider-bg" data-aos="fade-up" >
+                    <div class="slider">
+                        <div class="branding" *ngFor="let item of clientImages">
+                            <img [src]="item" alt="">
+                        </div>
+                    </div>
+                    <div class="slider">
+                        <div class="branding" *ngFor="let item of clientImages2">
+                            <img [src]="item" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div> 
+
 </div>
+
 
 <div class="contact-us" id="contact-us" >
     <div class="contact-wrapper">
