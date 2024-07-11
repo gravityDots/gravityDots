@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
     {name:'home',path:'/',id:'home-page'},
     {name:'services',path:'/services',id:'services'},
     {name:'about us',path:'/about-us',id:'about-us'},
-    // {name:'portfolio',path:'/portfolio',id:'portfolio'},
+    {name:'portfolio',path:'/portfolio',id:'portfolio'},
     {name:'contact us',path:'/contact-us',id:'contact-us'}
   ];
 
@@ -350,17 +350,17 @@ export class HomeComponent implements OnInit,AfterViewInit{
       id:'branding',
       images:[
         {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
-        {path:"assets/portfolio/BRANDING.jpg", name:'branding', id:'branding'},
-        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding', id:'branding'},
+        {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:'branding'},
+        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding',id:'branding'},
       ]
     },
     {
-      name:"Packaging design <br> & <br> Printing Editorials",
+      name:"Printing design <br> & <br> Packaging",
       id:'printing',
       images:[
-        {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing Editorials & Packaging design',id:'printing'},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing Editorials & Packaging design',id:'printing'},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
       ]
     },
     {
@@ -386,7 +386,6 @@ export class HomeComponent implements OnInit,AfterViewInit{
         {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
       ]
     }
-    
   ]
 
   constructor(private renderer: Renderer2,private router: Router) {
@@ -409,7 +408,9 @@ export class HomeComponent implements OnInit,AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    // this.initGSAPAnimation();
+    if(window.innerWidth > 425) {
+      this.initGSAPAnimation();
+    }
   }
 
   initGSAPAnimation(): void {
@@ -417,17 +418,21 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
     gsap.to(imagePanel, {
       xPercent: -100 * (imagePanel.length - 1),
-      ease: "none",
       scrollTrigger: {
-        trigger: '.portfolio',
-        pin: true,
-        scrub: 2,
-        snap: 1 / (imagePanel.length - 1),
-        end: () => {
-          const portfolio = document.querySelector('.portfolio') as HTMLElement;
-          return "+=" + portfolio.offsetWidth;
+          trigger: '.portfolio',
+          pin: true,
+          scrub: 4,
+          snap: {
+            snapTo: "labels",
+            duration:{min:1},
+            ease: "power1.inOut"
+          },
+         
+          end: () => {
+              const portfolio = document.querySelector('.portfolio') as HTMLElement;
+              return "+=" + portfolio.offsetWidth;
+          },
         }
-      }
     });
   }
 
@@ -487,19 +492,43 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
   }
 
-  goToService(id:any){
-    let serviceListItem =  document.getElementById(id) as HTMLElement;
-    if(window.innerWidth <= 768) {
-      setTimeout(() => {
-        serviceListItem?.scrollIntoView({ behavior: 'smooth' });
-      }, 1500);
-    }
-    else {
-      serviceListItem?.scrollIntoView({ behavior: 'smooth' });
-    }
+  // goToService(id: any) {
+  //   // Scroll to the portfolio section
+  //   let portfolioSection = document.getElementById('portfolio') as HTMLElement;
+  //   portfolioSection?.scrollIntoView({ behavior: 'smooth' });
+  //   let serviceListItem =  document.querySelector(`#${id}`) as HTMLElement;
 
-    // serviceListItem.classList.add('active-portfolio')
-  }
+  //   const imagePanel = document.querySelectorAll('.image-panel');
+  //   let totalOffset = 0;
+
+  //   imagePanel.forEach((panel: any) => {
+  //     totalOffset += panel.offsetLeft;
+  //   });
+    
+
+  //   imagePanel.forEach((panel:any, index:any) => {
+  //     if (serviceListItem.id == panel.id) {
+  //       if (window.innerWidth <= 768) {
+  //         setTimeout(() => {
+  //           gsap.to(imagePanel, {
+  //             x: totalOffset - panel.offsetLeft,
+  //           });
+  //           // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //         }, 1500);
+  //       } else {
+  //         gsap.to(imagePanel, {
+  //           x: totalOffset - panel.offsetLeft,
+  //         });
+  //         // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //       }
+  //     }
+  //   });
+
+    
+
+  // }
+  
+  
 
   createBalls() {
     const colors = ["#FFF", "#ffffff00"];

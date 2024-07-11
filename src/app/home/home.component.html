@@ -39,7 +39,8 @@
             <div class="services-container" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <div class="main-services">
                     <ul class="services-grid" data-aos="zoom-in" data-aos-offset="290" data-aos-duration="200">
-                        <li *ngFor="let service of mainServices" (click)="goToService(service.id)">
+                        <!-- <li *ngFor="let service of mainServices" (click)="goToService(service.id)"> -->
+                        <li *ngFor="let service of mainServices">
                         <img [src]="service.imgSrc" alt="" data-aos="zoom-in" data-aos-duration="1000">
                         <span class="description" [innerHTML]="service.description"></span>
                         </li>
@@ -103,18 +104,18 @@
             </div>
         </div>
         
-        <!-- <div class="sections portfolio" id="portfolio">
+        <div class="sections portfolio" id="portfolio">
             <div class="portfolio-container">
                 <ul class="portfolioImageContainer">
-                    <li class="image-panel" *ngFor="let item of portfolioImages">
-                    <h2 [innerHTML]="item.name" [id]="item.id"></h2>
-                    <div class="portfolio-images" *ngFor="let list of item.images">
-                        <img [src]="list.path" [alt]="list.name">
-                    </div>
+                    <li class="image-panel" *ngFor="let item of portfolioImages" [id]="item.id">
+                        <div class="portfolio-images" *ngFor="let list of item.images">
+                            <img [src]="list.path" [alt]="list.name">
+                            <h2 [innerHTML]="item.name" class="portfolio-heading"></h2>
+                        </div>
                     </li>
                 </ul>
             </div>
-        </div> -->
+        </div>
 
         <div class="sections" id="clients" #contactUs>
             <h1 class="section-header" data-aos="zoom-in" >Whom We<span>Served</span></h1>

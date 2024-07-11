@@ -276,12 +276,26 @@ svg{
     // position: relative;
     .main {
         width: 100vw;
-        height: auto;
+        // height: auto;
         @include flexproperty(flex,column,center,center);
-        // overflow: hidden;
-        // position: relative;
+        overflow: hidden;
+        position: relative;
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-          
+        // border-radius: 0 0 50px 50px;
+        
+        &::after{
+            display: block !important;
+            z-index: 1;
+            position: absolute;
+            content: '';
+            bottom: -120px;
+            width: 100%;
+            height: 120px;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            clip-path: ellipse(60% 60% at 50% 100%);
+            transform: rotate(180deg);
+        }
+
         .ball {
             position: absolute;
             border-radius: 50%;
@@ -691,9 +705,7 @@ svg{
         .container {
             width: 100vw;
             overflow-x: hidden;
-            @include flexproperty(flex,column,center,center);
-            // position: relative;
-            // background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow-y: hidden;
     
             .editorial {
                 display: block;
@@ -1121,28 +1133,40 @@ svg{
             }
             
             #portfolio{
-                width: auto;
+                width: 100vw;
                 height: 100vh;
+                position: relative;
                 @include flexproperty(flex,row,center,center);
 
                 .portfolio-container{
                     width: 100%;
-                    height: 100%;// background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-                    // position: relative;
+                    height: 100%;
+                    @include flexproperty(flex,row,center,center);
                     transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
                     opacity: 1;
-
+                    
                     .portfolioImageContainer{
+                        // margin-left: 200px;
                         @include flexproperty(flex,row,center,flex-start);
                         overflow-x: hidden;
-                        height: 100%;
                         flex-wrap: nowrap;
+                        padding: 10px;
 
                         .image-panel{
                             display: flex;
-                            margin: 10px;
 
+                           .portfolio-images{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            position: relative;
+                            
                             h2{
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                height: 100%;
+                                z-index: 1;
                                 font-size: 5vw;
                                 writing-mode: vertical-lr;
                                 transform: rotate(180deg);
@@ -1153,22 +1177,14 @@ svg{
                                 text-transform: capitalize;
                                 -webkit-text-stroke: 1px white;
                                 -webkit-text-fill-color: transparent;
+                                transition: .3s;
                             }
-
-                           .portfolio-images{
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
 
                             img{
                                 margin:0 10px;
-                                width: 80vw;
+                                width: 85vw;
                                 border-radius: 8px;
                                 transition: .3s;
-
-                                &:hover{
-                                    transform: scale(1.01)
-                                }
                             }
                            }
                         }
@@ -1341,7 +1357,21 @@ svg{
                     }
                 }
                 #portfolio{
-                    height: 60vh;
+                    .portfolio-container{
+                        .portfolioImageContainer{
+                            .image-panel{
+                                .portfolio-images{
+                                    h2{
+                                        margin: 0 10px 0 10px;
+                                    }
+                                    img{
+                                        margin: 5px;
+                                        // width: 100vw;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 #clients{
                     margin-top: 50px;
@@ -1402,7 +1432,24 @@ svg{
                     }
                 }
                 #portfolio{
-                    height: 30vh;
+                    height: max-content;
+                    .portfolio-container{
+                        flex-wrap: wrap;
+                        .portfolioImageContainer{
+                            flex-wrap: wrap;
+                            justify-content: center;
+
+                            .image-panel{
+                                flex-wrap: wrap;
+                                justify-content: center;
+                                .portfolio-images{
+                                    h2{
+                                        margin: 0 10px 0 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 #clients{
                     .section-header{
@@ -1437,18 +1484,6 @@ svg{
         }
     
     }
-
-    // &::after{
-    //     z-index: 1;
-    //     position: absolute;
-    //     content: '';
-    //     bottom: -120px;
-    //     width: 100%;
-    //     height: 120px;
-    //     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    //     clip-path: ellipse(60% 85% at 50% 100%);
-    //     transform: rotate(180deg);
-    // }
 
 // }
 
