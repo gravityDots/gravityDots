@@ -107,8 +107,8 @@
         <div class="sections portfolio" id="portfolio">
             <div class="portfolio-container">
                 <ul class="portfolioImageContainer">
-                    <li class="image-panel" *ngFor="let item of portfolioImages" [id]="item.id">
-                        <div class="portfolio-images" *ngFor="let list of item.images">
+                    <li class="image-panel" *ngFor="let item of portfolioImages">
+                        <div class="portfolio-images" *ngFor="let list of item.images" [id]="list?.id">
                             <img [src]="list.path" [alt]="list.name">
                             <h2 [innerHTML]="item.name" class="portfolio-heading"></h2>
                         </div>

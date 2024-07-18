@@ -1,8 +1,11 @@
-import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild, AfterViewInit } from '@angular/core';
+import { Component,HostListener,ElementRef,OnInit, Renderer2, ViewChild, AfterViewInit, QueryList } from '@angular/core';
 import {init} from 'aos';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -350,8 +353,8 @@ export class HomeComponent implements OnInit,AfterViewInit{
       id:'branding',
       images:[
         {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
-        {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:'branding'},
-        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding',id:'branding'},
+        {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:''},
+        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding',id:''},
       ]
     },
     {
@@ -359,8 +362,8 @@ export class HomeComponent implements OnInit,AfterViewInit{
       id:'printing',
       images:[
         {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:''},
+        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:''},
       ]
     },
     {
@@ -390,6 +393,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
   constructor(private renderer: Renderer2,private router: Router) {
     gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollToPlugin);
    }
 
   ngOnInit(): void {
@@ -415,16 +419,17 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
   initGSAPAnimation(): void {
     const imagePanel = gsap.utils.toArray(".portfolio-images");
+    // const imgLengh = document.querySelector('.portfolio-images img') as HTMLElement;
 
     gsap.to(imagePanel, {
-      xPercent: -100 * (imagePanel.length - 1),
+      x: () => -(window.innerWidth * 0.85) * (imagePanel.length - 1),
       scrollTrigger: {
           trigger: '.portfolio',
           pin: true,
-          scrub: 4,
+          scrub: 10,
           snap: {
-            snapTo: "labels",
-            duration:{min:1},
+            snapTo: 1 / (imagePanel.length - 1), 
+            duration: { min: 1, max: 2 },
             ease: "power1.inOut"
           },
          
@@ -492,41 +497,71 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
   }
 
-  // goToService(id: any) {
-  //   // Scroll to the portfolio section
-  //   let portfolioSection = document.getElementById('portfolio') as HTMLElement;
-  //   portfolioSection?.scrollIntoView({ behavior: 'smooth' });
-  //   let serviceListItem =  document.querySelector(`#${id}`) as HTMLElement;
+  goToService(id: any) {
 
-  //   const imagePanel = document.querySelectorAll('.image-panel');
-  //   let totalOffset = 0;
+    const targetImage = document.getElementById(id);
 
-  //   imagePanel.forEach((panel: any) => {
-  //     totalOffset += panel.offsetLeft;
-  //   });
+    if (targetImage) {
+      gsap.to(window, {
+        scrollTo: {
+          x: targetImage.offsetLeft - (window.innerWidth / 2),
+          autoKill: false
+        },
+        duration: 1,
+        ease: "power3.inOut"
+      });
+    }
+
+
+    // this.portfolioImages.forEach(item => {
+    //   if (item.images && item.images.length > 0 && item.images[0].id === id) {
+    //     let scrollToPortfolio = document.getElementById(id) as HTMLElement;
+
+    //     if (window.innerWidth <= 768) {
+    //       setTimeout(() => {
+    //         scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
+    //       }, 1500);
+    //     }
+    //     else {
+    //       scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    //   }
+    // });
+
+
+
+
+    // Scroll to the portfolio section
+    // let portfolioSection = document.getElementById('portfolio') as HTMLElement;
+    // portfolioSection?.scrollIntoView({ behavior: 'smooth' });
+    // let serviceListItem =  document.querySelector(`#${id}`) as HTMLElement;
+
+    // const imagePanel = document.querySelectorAll('.image-panel');
+    // let totalOffset = 0;
+
+    // imagePanel.forEach((panel: any) => {
+    //   totalOffset += panel.offsetLeft;
+    // });
     
 
-  //   imagePanel.forEach((panel:any, index:any) => {
-  //     if (serviceListItem.id == panel.id) {
-  //       if (window.innerWidth <= 768) {
-  //         setTimeout(() => {
-  //           gsap.to(imagePanel, {
-  //             x: totalOffset - panel.offsetLeft,
-  //           });
-  //           // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //         }, 1500);
-  //       } else {
-  //         gsap.to(imagePanel, {
-  //           x: totalOffset - panel.offsetLeft,
-  //         });
-  //         // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //       }
-  //     }
-  //   });
-
-    
-
-  // }
+    // imagePanel.forEach((panel:any, index:any) => {
+    //   if (serviceListItem.id == panel.id) {
+    //     if (window.innerWidth <= 768) {
+    //       setTimeout(() => {
+    //         gsap.to(imagePanel, {
+    //           x: totalOffset - panel.offsetLeft,
+    //         });
+    //         // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    //       }, 1500);
+    //     } else {
+    //       gsap.to(imagePanel, {
+    //         x: totalOffset - panel.offsetLeft,
+    //       });
+    //       // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    //     }
+    //   }
+    // });
+  }
   
   
 
