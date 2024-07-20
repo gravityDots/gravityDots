@@ -499,32 +499,41 @@ export class HomeComponent implements OnInit,AfterViewInit{
 
   goToService(id: any) {
 
-    const targetImage = document.getElementById(id);
-
-    if (targetImage) {
-      gsap.to(window, {
-        scrollTo: {
-          x: targetImage.offsetLeft - (window.innerWidth / 2),
-          autoKill: false
-        },
-        duration: 1,
-        ease: "power3.inOut"
-      });
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+      }, 1500);
     }
+    else {
+      document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // const targetImage = document.getElementById(id);
+
+    // if (targetImage) {
+    //   gsap.to(window, {
+    //     scrollTo: {
+    //       x: targetImage.offsetLeft - (window.innerWidth / 2),
+    //       autoKill: false
+    //     },
+    //     duration: 1,
+    //     ease: "power3.inOut"
+    //   });
+    // }
 
 
     // this.portfolioImages.forEach(item => {
     //   if (item.images && item.images.length > 0 && item.images[0].id === id) {
     //     let scrollToPortfolio = document.getElementById(id) as HTMLElement;
 
-    //     if (window.innerWidth <= 768) {
-    //       setTimeout(() => {
-    //         scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
-    //       }, 1500);
-    //     }
-    //     else {
-    //       scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
-    //     }
+        // if (window.innerWidth <= 768) {
+        //   setTimeout(() => {
+        //     scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
+        //   }, 1500);
+        // }
+        // else {
+        //   scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
+        // }
     //   }
     // });
 
