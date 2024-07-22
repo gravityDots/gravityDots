@@ -33,3 +33,25 @@ body {
     font-family: 'Artemus',"Poppins", sans-serif;
     // background: linear-gradient(to bottom, #81a5e065 0%, #cc5ae032 100%);
 }
+
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+//   /* Track */
+//   ::-webkit-scrollbar-track {
+//     // display: none;
+//     // background: transparent;
+//     border-radius: 10px;
+//   }
+   
+//   /* Handle */
+//   ::-webkit-scrollbar-thumb {
+//     background: blue; 
+//     border-radius: 10px;
+//   }
+  
+//   /* Handle on hover */
+//   ::-webkit-scrollbar-thumb:hover {
+//     background: #b30000; 
+//   }

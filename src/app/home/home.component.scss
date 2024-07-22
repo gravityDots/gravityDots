@@ -280,21 +280,22 @@ svg{
         @include flexproperty(flex,column,center,center);
         overflow: hidden;
         position: relative;
+        z-index: 1; 
         background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         // border-radius: 0 0 50px 50px;
         
-        &::after{
-            display: block !important;
-            z-index: 1;
-            position: absolute;
-            content: '';
-            bottom: -120px;
-            width: 100%;
-            height: 120px;
-            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-            clip-path: ellipse(60% 60% at 50% 100%);
-            transform: rotate(180deg);
-        }
+        // &::after{
+        //     display: block !important;
+        //     z-index: 1;
+        //     position: absolute;
+        //     content: '';
+        //     bottom: -120px;
+        //     width: 100%;
+        //     height: 120px;
+        //     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        //     clip-path: ellipse(60% 60% at 50% 100%);
+        //     transform: rotate(180deg);
+        // }
 
         .ball {
             position: absolute;
@@ -706,6 +707,7 @@ svg{
             width: 100vw;
             overflow-x: hidden;
             overflow-y: hidden;
+
     
             .editorial {
                 display: block;
@@ -1132,68 +1134,172 @@ svg{
                 }
             }
             
-            #portfolio{
-                width: 100vw;
-                height: 100vh;
-                position: relative;
-                @include flexproperty(flex,row,center,center);
+            // #portfolio{
+            //     width: 100vw;
+            //     height: 100vh;
+            //     position: relative;
+            //     @include flexproperty(flex,row,center,center);
 
-                .portfolio-container{
-                    width: 100%;
-                    height: 100%;
-                    @include flexproperty(flex,row,center,center);
-                    transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
-                    opacity: 1;
+            //     .portfolio-container{
+            //         width: 100%;
+            //         height: 100%;
+            //         @include flexproperty(flex,row,center,center);
+            //         transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            //         opacity: 1;
                     
-                    .portfolioImageContainer{
-                        // margin-left: 200px;
-                        @include flexproperty(flex,row,center,flex-start);
-                        overflow-x: hidden;
-                        flex-wrap: nowrap;
-                        padding: 10px;
+            //         .portfolioImageContainer{
+            //             // margin-left: 200px;
+            //             @include flexproperty(flex,row,center,flex-start);
+            //             overflow-x: hidden;
+            //             flex-wrap: nowrap;
+            //             padding: 10px;
 
-                        .image-panel{
-                            display: flex;
+            //             .image-panel{
+            //                 display: flex;
 
-                           .portfolio-images{
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            position: relative;
+            //                .portfolio-images{
+            //                 display: flex;
+            //                 align-items: center;
+            //                 justify-content: center;
+            //                 position: relative;
                             
-                            h2{
-                                position: absolute;
-                                left: 0;
-                                top: 0;
-                                height: 100%;
-                                z-index: 1;
-                                font-size: 5vw;
-                                writing-mode: vertical-lr;
-                                transform: rotate(180deg);
-                                margin: 0 40px 0 40px;
-                                text-align: center;
-                                mix-blend-mode: difference;
-                                color: transparent;
-                                text-transform: capitalize;
-                                -webkit-text-stroke: 1px white;
-                                -webkit-text-fill-color: transparent;
-                                transition: .3s;
-                            }
+            //                 h2{
+            //                     position: absolute;
+            //                     left: 0;
+            //                     top: 0;
+            //                     height: 100%;
+            //                     z-index: 1;
+            //                     font-size: 5vw;
+            //                     writing-mode: vertical-lr;
+            //                     transform: rotate(180deg);
+            //                     margin: 0 40px 0 40px;
+            //                     text-align: center;
+            //                     mix-blend-mode: difference;
+            //                     color: transparent;
+            //                     text-transform: capitalize;
+            //                     -webkit-text-stroke: 1px white;
+            //                     -webkit-text-fill-color: transparent;
+            //                     transition: .3s;
+            //                 }
 
-                            img{
-                                margin:0 10px;
-                                width: 85vw;
-                                border-radius: 8px;
-                                transition: .3s;
-                                object-fit: contain
-                            }
-                           }
+                            // img{
+                            //     margin:0 10px;
+                            //     width: 85vw;
+                            //     border-radius: 8px;
+                            //     transition: .3s;
+                            //     object-fit: contain
+                            // }
+            //                }
+            //             }
+
+            //         }
+
+            //     }
+
+            // }
+
+            #portfolio{
+               width: max-content;
+               height: 100vh;
+               scroll-snap-type: x mandatory;
+
+               .panel-wrapper{
+                    width: max-content;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    scroll-snap-type: x mandatory;
+
+                    .panel{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 0 5px;
+                        scroll-snap-align: center;
+                        position: relative;
+                        
+                        &:last-child{
+                            margin-right: 20px;
+                        }
+    
+                        img{
+                            width: 90vw;
+                            border-radius: 4px;
+                            object-fit: contain;
                         }
 
-                    }
+                        .overlay {
+                            position: absolute;
+                            bottom: 5%;
+                            left: 0;
+                            background: rgba(0, 0, 0, 0.5);
+                            overflow: hidden;
+                            font-size: 2.5vw;
+                            width: max-content;
+                            height: 0%;
+                            transition: .5s ease;
+                            color: white;
+                            @include flexproperty(flex,row,center,center );
+                            text-align: center;
+                            padding: 5px 10px;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            text-transform: uppercase;
+                            opacity: 0;
+                            
+                            &.active{
+                                opacity: 1;
+                                height: 8%;
+                            }            
+                          }
 
-                }
+                          &:hover{
+                            .overlay{
+                                opacity: 1;
+                                height: 8%;
+                            }
+                          }
+                   }
+               }
 
+               
+                    
+                // .portfolioImageContainer{
+                //     width: 100%;
+                //     // height: 100%;
+
+                //     .image-panel{
+                //         // width: max-content;
+                        
+                //         @include flexproperty(flex,column,flex-start,center);
+
+                //         h2{
+                //             align-self: flex-start;
+                //             height: 100%;
+                //             font-size: 5vw;
+                //             margin: 10px 40px;
+                //             text-align: center;
+                //             color: transparent;
+                //             text-transform: capitalize;
+                //             -webkit-text-stroke: 1px white;
+                //             -webkit-text-fill-color: transparent;
+                //             transition: .3s;
+                //         }
+
+                //         .portfolio-images{
+                //             display: flex;
+                //             flex-wrap: nowrap;
+
+                //             img{
+                //                 margin:0 10px;
+                //                 width: 100vw;
+                //                 border-radius: 8px;
+                //                 transition: .3s;
+                //                 object-fit: cover;
+                //             }
+                //         }
+                //     }
+
+                // }
             }
 
             #clients{
@@ -1357,23 +1463,20 @@ svg{
                         }
                     }
                 }
+
                 #portfolio{
-                    .portfolio-container{
-                        .portfolioImageContainer{
-                            .image-panel{
-                                .portfolio-images{
-                                    h2{
-                                        margin: 0 10px 0 10px;
-                                    }
-                                    img{
-                                        margin: 5px;
-                                        // width: 100vw;
-                                    }
-                                }
+                    .panel-wrapper{
+                        scroll-snap-type:none;
+                        .panel{
+                            img{
+                                height: 100vh;
+                                width:100vw;
+                                object-fit: cover;
                             }
                         }
                     }
                 }
+
                 #clients{
                     margin-top: 50px;
                     flex-direction: column;
@@ -1408,6 +1511,7 @@ svg{
                         }
                     }
                 }
+
                 #about-us{
                     .about-container{
     
@@ -1432,26 +1536,34 @@ svg{
                         }    
                     }
                 }
-                #portfolio{
-                    height: max-content;
-                    .portfolio-container{
-                        flex-wrap: wrap;
-                        .portfolioImageContainer{
-                            flex-wrap: wrap;
-                            justify-content: center;
 
-                            .image-panel{
-                                flex-wrap: wrap;
-                                justify-content: center;
-                                .portfolio-images{
-                                    h2{
-                                        margin: 0 10px 0 10px;
-                                    }
-                                }
+                #portfolio{
+                    height: auto;
+
+                    .panel-wrapper{
+                        align-items: center;
+                        flex-direction: column;
+                        width: 100vw;
+
+                        .panel{
+                            margin: 5px 0;
+
+                            &:last-child{
+                                margin-right: 0;
+                            }
+                            img{
+                                width: 95vw;
+                                height: auto;
+                                object-fit: contain;
+                            }
+
+                            .overlay{
+                                height: 3%;
                             }
                         }
                     }
                 }
+
                 #clients{
                     .section-header{
                         font-size: 6vw;
@@ -1491,7 +1603,6 @@ svg{
 .contact-us {
     width: 100vw;
     height: 100vh;
-    z-index: -1;
     position: -webkit-sticky;
     position: sticky;
     bottom: 0;

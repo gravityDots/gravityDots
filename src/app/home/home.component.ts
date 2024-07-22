@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
   private scrollThreshold = 100;
   public currentClass: string = 'toggle-menu';
   public showNavList:boolean = false;
-
+  public activeClass = false;
   public socialIcons = [
     { href: 'https://www.instagram.com/gravitydots/', iconClass: 'fa-brands fa-instagram'},
     { href: 'https://www.facebook.com/GravityDots', iconClass: 'fa-brands fa-facebook'},
@@ -347,49 +347,77 @@ export class HomeComponent implements OnInit,AfterViewInit{
   public portfolio:any = [];
   loadedImages: string[] = [];
 
+  // public portfolioImages = [
+  //   {path:"assets/portfolio/BRANDING2.jpg",name:'branding', id:'branding'},
+  //   {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:''},
+  //   {path:"assets/portfolio/BRANDING3.jpg",name:'branding',id:''},
+  //   {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
+  //   {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:''},
+  //   {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:''},
+  //   {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
+  //   {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
+  //   {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'},
+  //   {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
+  //   {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
+  // ]
+
   public portfolioImages = [
-    {
-      name:"branding",
-      id:'branding',
-      images:[
-        {path:"assets/portfolio/BRANDING (2).jpg",name:'branding', id:'branding'},
-        {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:''},
-        {path:"assets/portfolio/BRANDING (3).jpg",name:'branding',id:''},
-      ]
-    },
-    {
-      name:"Printing design <br> & <br> Packaging",
-      id:'printing',
-      images:[
-        {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:''},
-        {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:''},
-      ]
-    },
-    {
-      name:"Social media",
-      id:'dsm',
-      images:[
-        {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
-        {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
-        {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
-      ]
-    },
-    {
-      name:"paid advertising",
-      id:'ads',
-      images:[
-        {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
-      ]
-    },
-    {
-      name:"SEO",
-      id:'seo',
-      images:[
-        {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
-      ]
-    }
+    {path:"https://i.postimg.cc/BbtDL8Wj/BRANDING2.jpg",name:'branding', id:'branding'},
+    {path:"https://i.postimg.cc/KYynqvTW/BRANDING.jpg", name:'branding',id:''},
+    {path:"https://i.postimg.cc/90S9GWVJ/BRANDING3.jpg",name:'branding',id:''},
+    {path:"https://i.postimg.cc/T2Hn8cmg/Printing-Editorials-Packaging-design.jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+    {path:"https://i.postimg.cc/zXsWvXxf/Printing-Editorials-Packaging-design-2.jpg",name:'Printing Editorials & Packaging design',id:''},
+    {path:"https://i.postimg.cc/4N7VXhbM/Printing-Editorials-Packaging-design-3.jpg",name:'Printing Editorials & Packaging design',id:''},
+    {path:"https://i.postimg.cc/mDL74X8N/Social-media.jpg",name:'Social media',id:'dsm'},
+    {path:"https://i.postimg.cc/76K0Z3Rv/Social-media-2.jpg",name:'Social media',id:''},
+    {path:"https://i.postimg.cc/bvH1KcHw/Social-media-3.jpg",name:'Social media',id:''},
+    {path:"https://i.postimg.cc/kgWSb3Hv/Paid-Advertising.jpg", name:'paid advertising',id:'ads' },
+    {path:"https://i.postimg.cc/yNBZhp44/SEO.jpg", name:'SEO', id:'seo'},
   ]
+  
+  // public portfolioImages = [
+  //   {
+  //     name:"branding",
+  //     id:'branding',
+  //     images:[
+  //       {path:"assets/portfolio/BRANDING2.jpg",name:'branding', id:'branding'},
+  //       {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:''},
+  //       {path:"assets/portfolio/BRANDING3.jpg",name:'branding',id:''},
+  //     ]
+  //   },
+  //   {
+  //     name:"Printing Editorials & Packaging design",
+  //     id:'printing',
+  //     images:[
+  //       {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
+  //       {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:''},
+  //       {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:''},
+  //     ]
+  //   },
+  //   {
+  //     name:"Social media",
+  //     id:'dsm',
+  //     images:[
+  //       {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
+  //       {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
+  //       {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
+  //     ]
+  //   },
+  //   {
+  //     name:"paid advertising",
+  //     id:'ads',
+  //     images:[
+  //       {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
+  //     ]
+  //   },
+  //   {
+  //     name:"SEO",
+  //     id:'seo',
+  //     images:[
+  //       {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
+  //     ]
+  //   }
+  // ]
 
   constructor(private renderer: Renderer2,private router: Router) {
     gsap.registerPlugin(ScrollTrigger);
@@ -397,6 +425,9 @@ export class HomeComponent implements OnInit,AfterViewInit{
    }
 
   ngOnInit(): void {
+    if(window.innerWidth <= 768) {
+      this.activeClass = true;
+    }
     this.portfolio = [
       { name: 'Branding',path:"../../assets/compressed/BRANDING (2).webp",id:'branding'},
       { name: 'Printing Editorials & Packaging design',path:"../../assets/compressed/Printing Editorials & Packaging design.webp",id:'printing'},
@@ -405,7 +436,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
       { name: 'Creative Website Development',path:"../../assets/compressed/BRANDING (2).webp",id:'web'},
       { name: 'Content creation & SEO',path:"../../assets/compressed/SEO.webp",id:'seo'}
     ];
-
+  
     this.createBalls();
     init({
     })
@@ -417,30 +448,63 @@ export class HomeComponent implements OnInit,AfterViewInit{
     }
   }
 
-  initGSAPAnimation(): void {
-    const imagePanel = gsap.utils.toArray(".portfolio-images");
-    // const imgLengh = document.querySelector('.portfolio-images img') as HTMLElement;
+  // initGSAPAnimation(): void {
+  //   const imagePanel = gsap.utils.toArray(".portfolio-images");
 
-    gsap.to(imagePanel, {
-      x: () => -(window.innerWidth * 0.85) * (imagePanel.length - 1),
-      scrollTrigger: {
+  //   gsap.to(imagePanel, {
+  //     x: () => -(window.innerWidth * 0.85) * (imagePanel.length - 1),
+  //     scrollTrigger: {
+  //         trigger: '.portfolio',
+  //         pin: true,
+  //         scrub: 30,
+  //         snap: {
+  //           snapTo: 1 / (imagePanel.length - 1), 
+  //           duration: { min: 1, max: 2 },
+  //           ease: "power1.inOut"
+  //         },
+         
+  //         end: () => {
+  //             const portfolio = document.querySelector('.portfolio') as HTMLElement;
+  //             return "+=" + portfolio.offsetWidth;
+  //         },
+  //       }
+  //   });
+  // }
+
+  initGSAPAnimation(targetId?:any): void {
+    const portfolio = document.getElementById('portfolio') as HTMLElement;
+    const panels = document.querySelectorAll(".panel")
+
+    if (portfolio) {
+      const totalWidth = portfolio.scrollWidth;
+      const numPanels = panels.length;
+
+      const t1 = gsap.timeline({
+        defaults: {
+            ease: "none"
+        }
+      });
+      t1.to('.portfolio', {
+          x: - (totalWidth - window.innerWidth),
+          duration: numPanels * 2 
+      });
+
+      ScrollTrigger.create({
+          animation: t1,
           trigger: '.portfolio',
           pin: true,
-          scrub: 10,
+          scrub: 5,
+          end: () => "+=" + totalWidth,
           snap: {
-            snapTo: 1 / (imagePanel.length - 1), 
-            duration: { min: 1, max: 2 },
-            ease: "power1.inOut"
-          },
-         
-          end: () => {
-              const portfolio = document.querySelector('.portfolio') as HTMLElement;
-              return "+=" + portfolio.offsetWidth;
-          },
+            snapTo: 1 / (numPanels - 1), 
+            duration: 0.5, // Animation duration for snapping
+            delay: 0.1, // Delay before snapping occurs
+            ease: "power1.inOut" // Easing function for snapping
         }
-    });
+      });
+    }
   }
-
+  
   toDefaultPath() {
     document.getElementById('home-page')?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -498,7 +562,6 @@ export class HomeComponent implements OnInit,AfterViewInit{
   }
 
   goToService(id: any) {
-
     if (window.innerWidth <= 768) {
       setTimeout(() => {
         document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
@@ -507,6 +570,22 @@ export class HomeComponent implements OnInit,AfterViewInit{
     else {
       document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
     }
+    
+
+    // setTimeout(() => {
+    //   if(id){
+    //     if (window.innerWidth <= 768) {
+    //       setTimeout(() => {
+    //         this.initGSAPAnimation(id)
+    //       }, 1500);
+    //     }
+    //     else {
+    //       this.initGSAPAnimation(id)
+    //     }
+    //   }
+    // }, 500);
+    
+    
 
     // const targetImage = document.getElementById(id);
 

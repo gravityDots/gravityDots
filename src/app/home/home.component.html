@@ -104,7 +104,7 @@
             </div>
         </div>
         
-        <div class="sections portfolio" id="portfolio">
+        <!-- <div class="sections portfolio" id="portfolio">
             <div class="portfolio-container">
                 <ul class="portfolioImageContainer">
                     <li class="image-panel" *ngFor="let item of portfolioImages">
@@ -114,6 +114,17 @@
                         </div>
                     </li>
                 </ul>
+            </div>
+        </div> -->
+
+        <div class="sections portfolio" id="portfolio">
+            <div class="panel-wrapper" id="panel-wrapper">
+                <div class="panel" *ngFor="let item of portfolioImages">
+                    <img [src]="item.path" [alt]="item.name" [id]="item?.id" data-aos="zoom-in" data-aos-duration="1000">
+                    <div class="overlay" [ngClass]="{'active':activeClass}" data-aos="zoom-in" >
+                        <span [innerHTML]="item.name"></span>
+                      </div>
+                </div>
             </div>
         </div>
 
