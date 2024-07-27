@@ -530,7 +530,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
           trigger: '.panel-wrapper1',
           pin: true,
           scrub: 3,
-          end: () => "+=" + totalWidth,
+          end: () =>  "+=" + (totalWidth + window.innerWidth),
           snap: {
             snapTo: 1 / (numPanels - 1), 
             duration: 0.5,
@@ -559,7 +559,8 @@ export class HomeComponent implements OnInit,AfterViewInit{
           trigger: '.panel-wrapper2',
           pin: true,
           scrub: 3,
-          end: () => "+=" + totalWidth,
+          start:'top',
+          end: () =>  "+=" + (totalWidth + window.innerWidth),
           snap: {
             snapTo: 1 / (numPanels - 1), 
             duration: 0.5,
