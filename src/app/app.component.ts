@@ -9,7 +9,16 @@ export class AppComponent implements OnInit{
   isLoading = true;
   // public logoPath = '../../assets/GRAVITYDOTS LOGO.png'
   ngOnInit(): void {
-    this.loadContent();
+    let refreshCount:any = sessionStorage.getItem('refreshCount');
+    refreshCount = refreshCount ? parseInt(refreshCount, 10) : 0;
+
+    if (refreshCount < 2) {
+      sessionStorage.setItem('refreshCount', (refreshCount + 1).toString());
+      window.location.reload();
+    } else {
+      this.loadContent();
+      sessionStorage.removeItem('refreshCount');
+    }
   }
 
   loadContent(): void {
