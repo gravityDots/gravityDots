@@ -1253,38 +1253,42 @@ svg{
                         padding: 0 5px;
                         scroll-snap-align: center;
                         width: 95vw;
-                        position: relative;
             
                         &:first-child {
                             padding-left: 0;
                         }
             
-                        img {
+                        .img-container{
                             width: 100%;
-                            border-radius: 4px;
-                            object-fit: contain;
-                        }
-            
-                        h2 {
-                            width: max-content;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            font-size: 5vw;
-                            color: white;
-                            font-family: 'Chavelite';
-                            letter-spacing: 5px;
-                            text-transform: capitalize;
-                            transition: .5s;
-                            opacity: 0.6;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                            padding: 100px;
-            
-                            &:hover {
-                                cursor: pointer;
-                                opacity: 1;
-                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            position: relative;
+
+                            img {
+                                width: 100%;
+                                border-radius: 4px;
+                                object-fit: contain;
+                            }
+                
+                            h2 {
+                                width: max-content;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-size: 5vw;
+                                color: white;
+                                font-family: 'Chavelite';
+                                letter-spacing: 5px;
+                                text-transform: capitalize;
+                                transition: .5s;
+                                opacity: 0.6;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                                padding: 100px;
+                
+                                &:hover {
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                                }
                             }
                         }
                     }
@@ -1295,7 +1299,6 @@ svg{
                     display: flex;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
-                    // align-items: center;
 
                     .panel2 {
                         padding: 0 5px;
@@ -1307,32 +1310,37 @@ svg{
                             padding-left: 0;
                         }
             
-                        img {
+                        .img-container{
                             width: 100%;
-                            border-radius: 4px;
-                            object-fit: contain;
-                        }
-            
-                        h2 {
-                            width: max-content;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%,-50%);
-                            font-size: 5vw;
-                            color: white;
-                            font-family: 'Chavelite';
-                            letter-spacing: 5px;
-                            text-transform: capitalize;
-                            transition: .5s;
-                            opacity: 0.6;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                            padding: 100px;
+                            position: relative;
 
-                            &:hover {
-                                cursor: pointer;
-                                opacity: 1;
-                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            img {
+                                width: 100%;
+                                border-radius: 4px;
+                                object-fit: contain;
+                            }
+                
+                            h2 {
+                                width: max-content;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-size: 5vw;
+                                color: white;
+                                font-family: 'Chavelite';
+                                letter-spacing: 5px;
+                                text-transform: capitalize;
+                                transition: .5s;
+                                opacity: 0.6;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                                padding: 100px;
+                
+                                &:hover {
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                                }
                             }
                         }
                     }
@@ -1343,7 +1351,6 @@ svg{
                     display: flex;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
-                    // align-items: center;
 
                     .panel3 {
                         padding: 0 5px;
@@ -1355,32 +1362,37 @@ svg{
                             padding-left: 0;
                         }
             
-                        img {
+                        .img-container{
                             width: 100%;
-                            border-radius: 4px;
-                            object-fit: contain;
-                        }
-            
-                        h2 {
-                            width: max-content;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%,-50%);
-                            font-size: 5vw;
-                            color: white;
-                            font-family: 'Chavelite';
-                            letter-spacing: 5px;
-                            text-transform: capitalize;
-                            transition: .5s;
-                            opacity: 0.6;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                            padding: 100px;
+                            position: relative;
 
-                            &:hover {
-                                cursor: pointer;
-                                opacity: 1;
-                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            img {
+                                width: 100%;
+                                border-radius: 4px;
+                                object-fit: contain;
+                            }
+                
+                            h2 {
+                                width: max-content;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-size: 5vw;
+                                color: white;
+                                font-family: 'Chavelite';
+                                letter-spacing: 5px;
+                                text-transform: capitalize;
+                                transition: .5s;
+                                opacity: 0.6;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                                padding: 100px;
+                
+                                &:hover {
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                                }
                             }
                         }
                     }
@@ -1449,7 +1461,6 @@ svg{
                     display: flex;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
-                    // align-items: center;
 
                     .panel5 {
                         padding: 0 5px;
@@ -1461,32 +1472,37 @@ svg{
                             padding-left: 0;
                         }
             
-                        img {
+                        .img-container{
                             width: 100%;
-                            border-radius: 4px;
-                            object-fit: contain;
-                        }
-            
-                        h2 {
-                            width: max-content;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%,-50%);
-                            font-size: 5vw;
-                            color: white;
-                            font-family: 'Chavelite';
-                            letter-spacing: 5px;
-                            text-transform: capitalize;
-                            transition: .5s;
-                            opacity: 0.6;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                            padding: 100px;
+                            position: relative;
 
-                            &:hover {
-                                cursor: pointer;
-                                opacity: 1;
-                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            img {
+                                width: 100%;
+                                border-radius: 4px;
+                                object-fit: contain;
+                            }
+                
+                            h2 {
+                                width: max-content;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                font-size: 5vw;
+                                color: white;
+                                font-family: 'Chavelite';
+                                letter-spacing: 5px;
+                                text-transform: capitalize;
+                                transition: .5s;
+                                opacity: 0.6;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                                padding: 100px;
+                
+                                &:hover {
+                                    cursor: pointer;
+                                    opacity: 1;
+                                    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                                }
                             }
                         }
                     }
@@ -1575,32 +1591,37 @@ svg{
                         padding-left: 0;
                     }
         
-                    img {
+                    .img-container{
                         width: 100%;
-                        border-radius: 4px;
-                        object-fit: contain;
-                    }
-        
-                    h2 {
-                        width: max-content;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%,-50%);
-                        font-size: 5vw;
-                        color: white;
-                        font-family: 'Chavelite';
-                        letter-spacing: 5px;
-                        text-transform: capitalize;
-                        transition: .5s;
-                        opacity: 0.6;
-                        text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                        padding: 100px;
+                        position: relative;
 
-                        &:hover {
-                            cursor: pointer;
-                            opacity: 1;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                        img {
+                            width: 100%;
+                            border-radius: 4px;
+                            object-fit: contain;
+                        }
+            
+                        h2 {
+                            width: max-content;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            font-size: 5vw;
+                            color: white;
+                            font-family: 'Chavelite';
+                            letter-spacing: 5px;
+                            text-transform: capitalize;
+                            transition: .5s;
+                            opacity: 0.6;
+                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                            padding: 100px;
+            
+                            &:hover {
+                                cursor: pointer;
+                                opacity: 1;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            }
                         }
                     }
                 }
@@ -1627,32 +1648,37 @@ svg{
                         padding-left: 0;
                     }
         
-                    img {
+                    .img-container{
                         width: 100%;
-                        border-radius: 4px;
-                        object-fit: contain;
-                    }
-        
-                    h2 {
-                        width: max-content;
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%,-50%);
-                        font-size: 5vw;
-                        color: white;
-                        font-family: 'Chavelite';
-                        letter-spacing: 5px;
-                        text-transform: capitalize;
-                        transition: .5s;
-                        opacity: 0.6;
-                        text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
-                        padding: 100px;
+                        position: relative;
 
-                        &:hover {
-                            cursor: pointer;
-                            opacity: 1;
-                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                        img {
+                            width: 100%;
+                            border-radius: 4px;
+                            object-fit: contain;
+                        }
+            
+                        h2 {
+                            width: max-content;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            font-size: 5vw;
+                            color: white;
+                            font-family: 'Chavelite';
+                            letter-spacing: 5px;
+                            text-transform: capitalize;
+                            transition: .5s;
+                            opacity: 0.6;
+                            text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.2);
+                            padding: 100px;
+            
+                            &:hover {
+                                cursor: pointer;
+                                opacity: 1;
+                                text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.5);
+                            }
                         }
                     }
                 }
@@ -1832,13 +1858,16 @@ svg{
                             width: 100%;
                             padding: 0;
 
-                            img {
+                            .img-container{
                                 width: 100%;
-                            }
-                
-                            h2 {
-                                padding: 90px;
-                                font-size: 3vw;
+                                img {
+                                    width: 100%;
+                                }
+                    
+                                h2 {
+                                    padding: 90px;
+                                    font-size: 3vw;
+                                }
                             }
                         }
                     }
@@ -1855,13 +1884,16 @@ svg{
                         width: 100%;
                         padding: 0;
 
-                        img {
+                        .img-container{
                             width: 100%;
-                        }
-                        
-                        h2 {
-                            font-size: 3vw;
-                            padding: 90px;
+                            img {
+                                width: 100%;
+                            }
+                            
+                            h2 {
+                                font-size: 3vw;
+                                padding: 90px;
+                            }
                         }
                     }
                 }
