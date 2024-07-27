@@ -1246,6 +1246,8 @@ svg{
                 .panel-wrapper1 {
                     width: max-content;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
                     
@@ -1253,7 +1255,6 @@ svg{
                         padding: 0 5px;
                         scroll-snap-align: center;
                         width: 95vw;
-                        // position: relative;
 
                         &:first-child {
                             padding-left: 0;
@@ -1297,15 +1298,15 @@ svg{
                 .panel-wrapper2 {
                     width: max-content;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
 
                     .panel2 {
                         padding: 0 5px;
                         scroll-snap-align: center;
-                        position: relative;
                         width: 95vw;
-                        // position: relative;
 
                         &:first-child {
                             padding-left: 0;
@@ -1350,13 +1351,14 @@ svg{
                 .panel-wrapper3 {
                     width: max-content;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
 
                     .panel3 {
                         padding: 0 5px;
                         scroll-snap-align: center;
-                        position: relative;
                         width: 95vw;
             
                         &:first-child {
@@ -1460,13 +1462,14 @@ svg{
                 .panel-wrapper5 {
                     width: max-content;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     flex-wrap: nowrap;
                     scroll-snap-type: x mandatory;
 
                     .panel5 {
                         padding: 0 5px;
                         scroll-snap-align: center;
-                        position: relative;
                         width: 95vw;
             
                         &:first-child {
@@ -1582,7 +1585,6 @@ svg{
                 .panel4 {
                     padding: 0 5px;
                     scroll-snap-align: center;
-                    position: relative;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -1639,7 +1641,6 @@ svg{
                 .panel6 {
                     padding: 0 5px;
                     scroll-snap-align: center;
-                    position: relative;
                     width: 95vw;
                     display: flex;
                     align-items: center;
