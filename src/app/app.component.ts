@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
     let refreshCount:any = sessionStorage.getItem('refreshCount');
     refreshCount = refreshCount ? parseInt(refreshCount, 10) : 0;
 
-    if (refreshCount < 2) {
+    if (refreshCount < 3) {
       sessionStorage.setItem('refreshCount', (refreshCount + 1).toString());
       window.location.reload();
     } else {
