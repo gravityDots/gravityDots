@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <div class="sections portfolio" id="portfolio">
+        <!-- <div class="sections portfolio" id="portfolio">
             <div class="panel-wrapper1" id="branding" *ngIf="brandingImages.length > 0">
                 <div class="panel1" *ngFor="let item of brandingImages; let i = index" data-aos="fade-up">
                     <div class="img-container">
@@ -132,13 +132,6 @@
                 </div>
             </div>
 
-            <!-- <div class="panel-wrapper4" id="ads" *ngIf="adsImages.length > 0">
-                <div class="panel4" *ngFor="let item of adsImages;let i = index" data-aos="fade-up">
-                    <img [src]="item?.path" [alt]="item?.name" data-aos="zoom-in" data-aos-duration="800">
-                    <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
-                </div>
-            </div> -->
-
             <div class="panel-wrapper5" id="web" *ngIf="developmentImages.length > 0">
                 <div class="panel5" *ngFor="let item of developmentImages;let i = index" data-aos="fade-up">
                     <div class="img-container">
@@ -148,28 +141,50 @@
                 </div>
             </div>
 
-            <!-- <div class="panel-wrapper6" id="seo" *ngIf="contentImages.length > 0">
-                <div class="panel6" *ngFor="let item of contentImages;let i = index" data-aos="fade-up">
-                    <img [src]="item?.path" [alt]="item?.name" data-aos="zoom-in" data-aos-duration="800">
+        </div> -->
+
+
+        <div class="sections portfolio" id="portfolio">
+            <div class="panel-wrapper1" id="branding" *ngIf="brandingImages.length > 0">
+                <div class="panel1" *ngFor="let item of brandingImages; let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >  
                     <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
                 </div>
-            </div> -->
+            </div>
+            
+            <div class="panel-wrapper2" id="printing" *ngIf="printingImages.length > 0">
+                <div class="panel2" *ngFor="let item of printingImages;let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >
+                    <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
+                </div>
+            </div>
+
+            <div class="panel-wrapper3" id="dsm" *ngIf="socialMediaImages.length > 0">
+                <div class="panel3" *ngFor="let item of socialMediaImages;let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >
+                    <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
+                </div>
+            </div>
+
+            <div class="panel-wrapper5" id="web" *ngIf="developmentImages.length > 0">
+                <div class="panel5" *ngFor="let item of developmentImages;let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >
+                   <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
+                </div>
+            </div>
+
         </div>
 
         <div class="panel-wrapper4" id="ads" *ngIf="adsImages.length > 0">
-            <div class="panel4" *ngFor="let item of adsImages;let i = index" data-aos="fade-up">
-                <div class="img-container">
+            <div class="panel4" *ngFor="let item of adsImages;let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >
+                <!-- <div class="img-container">
                     <img [src]="item?.path" [alt]="item?.name" data-aos="zoom-in" data-aos-duration="800">
-                </div>
+                </div> -->
                 <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
             </div>
         </div>
 
         <div class="panel-wrapper6" id="seo" *ngIf="contentImages.length > 0">
-            <div class="panel6" *ngFor="let item of contentImages;let i = index" data-aos="fade-up">
-                <div class="img-container">
+            <div class="panel6" *ngFor="let item of contentImages;let i = index" data-aos="fade-up" [ngStyle]="{ 'background-image': 'url(' + item.path + ')', 'background-size': 'cover', 'background-position': 'center' }" >
+                <!-- <div class="img-container">
                     <img [src]="item?.path" [alt]="item?.name" data-aos="zoom-in" data-aos-duration="800">
-                </div>
+                </div> -->
                 <h2 *ngIf="i === 0" data-aos="fade-up">{{item.name}}</h2>
             </div>
         </div>
