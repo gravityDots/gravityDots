@@ -5,6 +5,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
+interface PortfolioImages {
+  path: string;
+  name: string;
+  id: String;
+}
 
 @Component({
   selector: 'app-home',
@@ -375,49 +380,33 @@ export class HomeComponent implements OnInit,AfterViewInit{
     {path:"https://i.postimg.cc/yNBZhp44/SEO.jpg", name:'SEO', id:'seo'},
   ]
   
-  // public portfolioImages = [
-  //   {
-  //     name:"branding",
-  //     id:'branding',
-  //     images:[
-  //       {path:"assets/portfolio/BRANDING2.jpg",name:'branding', id:'branding'},
-  //       {path:"assets/portfolio/BRANDING.jpg", name:'branding',id:''},
-  //       {path:"assets/portfolio/BRANDING3.jpg",name:'branding',id:''},
-  //     ]
-  //   },
-  //   {
-  //     name:"Printing Editorials & Packaging design",
-  //     id:'printing',
-  //     images:[
-  //       {path:"assets/portfolio/Printing Editorials & Packaging design.jpg",name:'Printing design <br> & <br> Packaging',id:'printing'},
-  //       {path:"assets/portfolio/Printing Editorials & Packaging design (2).jpg",name:'Printing design <br> & <br> Packaging',id:''},
-  //       {path:"assets/portfolio/Printing Editorials & Packaging design (3).jpg",name:'Printing design <br> & <br> Packaging',id:''},
-  //     ]
-  //   },
-  //   {
-  //     name:"Social media",
-  //     id:'dsm',
-  //     images:[
-  //       {path:"assets/portfolio/Social media.jpg",name:'Social media',id:'dsm'},
-  //       {path:"assets/portfolio/Social media (2).jpg",name:'Social media',id:'dsm'},
-  //       {path:"assets/portfolio/Social media (3).jpg",name:'Social media',id:'dsm'}
-  //     ]
-  //   },
-  //   {
-  //     name:"paid advertising",
-  //     id:'ads',
-  //     images:[
-  //       {path:"assets/portfolio/Paid Advertising.jpg", name:'paid advertising',id:'ads' },
-  //     ]
-  //   },
-  //   {
-  //     name:"SEO",
-  //     id:'seo',
-  //     images:[
-  //       {path:"assets/portfolio/SEO.jpg", name:'SEO', id:'seo'},
-  //     ]
-  //   }
-  // ]
+  public brandingImages:PortfolioImages[] = [
+    {path:"https://i.postimg.cc/BbtDL8Wj/BRANDING2.jpg",name:'Branding', id:'branding'},
+    {path:"https://i.postimg.cc/KYynqvTW/BRANDING.jpg", name:'Branding',id:''},
+    {path:"https://i.postimg.cc/90S9GWVJ/BRANDING3.jpg",name:'Branding',id:''},
+  ]
+
+  public printingImages:PortfolioImages[] = [
+    {path:"https://i.postimg.cc/T2Hn8cmg/Printing-Editorials-Packaging-design.jpg",name:'Printing Editorials & Packaging design',id:'printing'},
+    {path:"https://i.postimg.cc/zXsWvXxf/Printing-Editorials-Packaging-design-2.jpg",name:'Printing Editorials & Packaging design',id:''},
+    {path:"https://i.postimg.cc/4N7VXhbM/Printing-Editorials-Packaging-design-3.jpg",name:'Printing Editorials & Packaging design',id:''},
+  ]
+  
+  public socialMediaImages:PortfolioImages[] = [
+    {path:"https://i.postimg.cc/mDL74X8N/Social-media.jpg",name:'Digital/ Social Media management',id:'dsm'},
+    {path:"https://i.postimg.cc/76K0Z3Rv/Social-media-2.jpg",name:'Digital/ Social Media management',id:''},
+    {path:"https://i.postimg.cc/bvH1KcHw/Social-media-3.jpg",name:'Digital/ Social Media management',id:''},
+  ]
+
+  public adsImages:PortfolioImages[] = [
+    {path:"https://i.postimg.cc/kgWSb3Hv/Paid-Advertising.jpg", name:'paid advertising',id:'ads' },
+  ]
+
+  public developmentImages:PortfolioImages[] = []
+
+  public contentImages:PortfolioImages[] = [
+    {path:"https://i.postimg.cc/yNBZhp44/SEO.jpg", name:'Content creation & SEO', id:'seo'},
+  ]
 
   constructor(private renderer: Renderer2,private router: Router) {
     gsap.registerPlugin(ScrollTrigger);
@@ -443,7 +432,7 @@ export class HomeComponent implements OnInit,AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    if(window.innerWidth > 425) {
+    if(window.innerWidth > 768) {
       this.initGSAPAnimation();
     }
   }
@@ -471,38 +460,230 @@ export class HomeComponent implements OnInit,AfterViewInit{
   //   });
   // }
 
-  initGSAPAnimation(targetId?:any): void {
-    const portfolio = document.getElementById('portfolio') as HTMLElement;
-    const panels = document.querySelectorAll(".panel")
+  // initGSAPAnimation(targetId?:any): void {
+  //   const portfolio = document.getElementById('portfolio') as HTMLElement;
+  //   const panels = document.querySelectorAll(".panel")
 
-    if (portfolio) {
-      const totalWidth = portfolio.scrollWidth;
-      const numPanels = panels.length;
+  //   if (portfolio) {
+  //     const totalWidth = portfolio.scrollWidth;
+  //     const numPanels = panels.length;
+
+  //     const t1 = gsap.timeline({
+  //       defaults: {
+  //           ease: "none"
+  //       }
+  //     });
+  //     t1.to('.portfolio', {
+  //         x: - (totalWidth - window.innerWidth),
+  //         duration: numPanels * 2 
+  //     });
+
+  //     ScrollTrigger.create({
+  //         animation: t1,
+  //         trigger: '.portfolio',
+  //         pin: true,
+  //         scrub: 5,
+  //         end: () => "+=" + totalWidth,
+  //         snap: {
+  //           snapTo: 1 / (numPanels - 1), 
+  //           duration: 0.5, // Animation duration for snapping
+  //           delay: 0.1, // Delay before snapping occurs
+  //           ease: "power1.inOut" // Easing function for snapping
+  //       }
+  //     });
+  //   }
+  // }
+  
+  initGSAPAnimation(targetId?:any): void {
+    const branding = document.getElementById('branding') as HTMLElement;
+    const printing = document.getElementById('printing') as HTMLElement;
+    const dsm = document.getElementById('dsm') as HTMLElement;
+    const ads = document.getElementById('ads') as HTMLElement;
+    const web = document.getElementById('web') as HTMLElement;
+    const seo = document.getElementById('seo') as HTMLElement;
+
+
+    const panels1 = document.querySelectorAll(".panel1")
+    const panels2 = document.querySelectorAll(".panel2")
+    const panels3 = document.querySelectorAll(".panel3")
+    const panels4 = document.querySelectorAll(".panel4")
+    const panels5 = document.querySelectorAll(".panel5")
+    const panels6 = document.querySelectorAll(".panel6")
+
+
+    if (branding) {
+      const totalWidth = branding.scrollWidth;
+      const numPanels = panels1.length;
 
       const t1 = gsap.timeline({
         defaults: {
             ease: "none"
         }
       });
-      t1.to('.portfolio', {
+      t1.to('.panel-wrapper1', {
           x: - (totalWidth - window.innerWidth),
-          duration: numPanels * 2 
+          duration: numPanels 
       });
 
       ScrollTrigger.create({
           animation: t1,
-          trigger: '.portfolio',
+          trigger: '.panel-wrapper1',
           pin: true,
-          scrub: 5,
+          scrub: 3,
           end: () => "+=" + totalWidth,
           snap: {
             snapTo: 1 / (numPanels - 1), 
-            duration: 0.5, // Animation duration for snapping
-            delay: 0.1, // Delay before snapping occurs
+            duration: 0.5,
+            delay: 0.1,
             ease: "power1.inOut" // Easing function for snapping
         }
       });
     }
+
+    if (printing) {
+      const totalWidth = printing.scrollWidth;
+      const numPanels = panels2.length;
+
+      const t1 = gsap.timeline({
+        defaults: {
+            ease: "none"
+        }
+      });
+      t1.to('.panel-wrapper2', {
+          x: - (totalWidth - window.innerWidth),
+          duration: numPanels 
+      });
+
+      ScrollTrigger.create({
+          animation: t1,
+          trigger: '.panel-wrapper2',
+          pin: true,
+          scrub: 3,
+          end: () => "+=" + totalWidth,
+          snap: {
+            snapTo: 1 / (numPanels - 1), 
+            duration: 0.5,
+            delay: 0.1,
+            ease: "power1.inOut"
+        }
+      });
+    }
+
+    if (dsm) {
+      const totalWidth = dsm.scrollWidth;
+      const numPanels = panels3.length;
+
+      const t1 = gsap.timeline({
+        defaults: {
+            ease: "none"
+        }
+      });
+      t1.to('.panel-wrapper3', {
+          x: - (totalWidth - window.innerWidth),
+          duration: numPanels 
+      });
+
+      ScrollTrigger.create({
+          animation: t1,
+          trigger: '.panel-wrapper3',
+          pin: true,
+          scrub: 3,
+          end: () => "+=" + totalWidth,
+          snap: {
+            snapTo: 1 / (numPanels - 1), 
+            duration: 0.5,
+            delay: 0.1,
+            ease: "power1.inOut"
+        }
+      });
+    }
+
+    // if (ads) {
+    //   const totalWidth = ads.scrollWidth;
+    //   const numPanels = panels4.length;
+
+    //   const t1 = gsap.timeline({
+    //     defaults: {
+    //         ease: "none"
+    //     }
+    //   });
+    //   t1.to('.panel-wrapper4', {
+    //       x: - (totalWidth - window.innerWidth),
+    //       duration: numPanels 
+    //   });
+
+    //   ScrollTrigger.create({
+    //       animation: t1,
+    //       trigger: '.panel-wrapper4',
+    //       pin: true,
+    //       scrub: 3,
+    //       end: () => "+=" + totalWidth,
+    //       snap: {
+    //         snapTo: 1 / (numPanels - 1), 
+    //         duration: 0.5,
+    //         delay: 0.1,
+    //         ease: "power1.inOut"
+    //     }
+    //   });
+    // }
+
+    if (web) {
+      const totalWidth = web.scrollWidth;
+      const numPanels = panels5.length;
+
+      const t1 = gsap.timeline({
+        defaults: {
+            ease: "none"
+        }
+      });
+      t1.to('.panel-wrapper5', {
+          x: - (totalWidth - window.innerWidth),
+          duration: numPanels 
+      });
+
+      ScrollTrigger.create({
+          animation: t1,
+          trigger: '.panel-wrapper5',
+          pin: true,
+          scrub: 3,
+          end: () => "+=" + totalWidth,
+          snap: {
+            snapTo: 1 / (numPanels - 1), 
+            duration: 0.5,
+            delay: 0.1,
+            ease: "power1.inOut"
+        }
+      });
+    }
+
+    // if (seo) {
+    //   const totalWidth = seo.scrollWidth;
+    //   const numPanels = panels6.length;
+
+    //   const t1 = gsap.timeline({
+    //     defaults: {
+    //         ease: "none"
+    //     }
+    //   });
+    //   t1.to('.panel-wrapper6', {
+    //       x: - (totalWidth - window.innerWidth),
+    //       duration: numPanels 
+    //   });
+
+    //   ScrollTrigger.create({
+    //       animation: t1,
+    //       trigger: '.panel-wrapper6',
+    //       pin: true,
+    //       scrub: 3,
+    //       end: () => "+=" + totalWidth,
+    //       snap: {
+    //         snapTo: 1 / (numPanels - 1), 
+    //         duration: 0.5,
+    //         delay: 0.1,
+    //         ease: "power1.inOut"
+    //     }
+    //   });
+    // }
   }
   
   toDefaultPath() {
@@ -564,95 +745,13 @@ export class HomeComponent implements OnInit,AfterViewInit{
   goToService(id: any) {
     if (window.innerWidth <= 768) {
       setTimeout(() => {
-        document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
       }, 1500);
     }
     else {
-      document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
-    
-
-    // setTimeout(() => {
-    //   if(id){
-    //     if (window.innerWidth <= 768) {
-    //       setTimeout(() => {
-    //         this.initGSAPAnimation(id)
-    //       }, 1500);
-    //     }
-    //     else {
-    //       this.initGSAPAnimation(id)
-    //     }
-    //   }
-    // }, 500);
-    
-    
-
-    // const targetImage = document.getElementById(id);
-
-    // if (targetImage) {
-    //   gsap.to(window, {
-    //     scrollTo: {
-    //       x: targetImage.offsetLeft - (window.innerWidth / 2),
-    //       autoKill: false
-    //     },
-    //     duration: 1,
-    //     ease: "power3.inOut"
-    //   });
-    // }
-
-
-    // this.portfolioImages.forEach(item => {
-    //   if (item.images && item.images.length > 0 && item.images[0].id === id) {
-    //     let scrollToPortfolio = document.getElementById(id) as HTMLElement;
-
-        // if (window.innerWidth <= 768) {
-        //   setTimeout(() => {
-        //     scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
-        //   }, 1500);
-        // }
-        // else {
-        //   scrollToPortfolio?.scrollIntoView({ behavior: 'smooth' });
-        // }
-    //   }
-    // });
-
-
-
-
-    // Scroll to the portfolio section
-    // let portfolioSection = document.getElementById('portfolio') as HTMLElement;
-    // portfolioSection?.scrollIntoView({ behavior: 'smooth' });
-    // let serviceListItem =  document.querySelector(`#${id}`) as HTMLElement;
-
-    // const imagePanel = document.querySelectorAll('.image-panel');
-    // let totalOffset = 0;
-
-    // imagePanel.forEach((panel: any) => {
-    //   totalOffset += panel.offsetLeft;
-    // });
-    
-
-    // imagePanel.forEach((panel:any, index:any) => {
-    //   if (serviceListItem.id == panel.id) {
-    //     if (window.innerWidth <= 768) {
-    //       setTimeout(() => {
-    //         gsap.to(imagePanel, {
-    //           x: totalOffset - panel.offsetLeft,
-    //         });
-    //         // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    //       }, 1500);
-    //     } else {
-    //       gsap.to(imagePanel, {
-    //         x: totalOffset - panel.offsetLeft,
-    //       });
-    //       // panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    //     }
-    //   }
-    // });
   }
-  
-  
-
   createBalls() {
     const colors = ["#FFF", "#ffffff00"];
     const numBalls = 80;
