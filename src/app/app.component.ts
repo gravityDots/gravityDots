@@ -14,7 +14,9 @@ export class AppComponent implements OnInit{
 
   loadContent(): void {
     window.addEventListener('load', () => {
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     });
   }
 }
